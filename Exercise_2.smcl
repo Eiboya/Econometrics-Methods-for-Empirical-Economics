@@ -1,0 +1,834 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kongqingluo/Desktop/EEE/Empirical Exercise/Exercise_2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Dec 2021, 20:39:22
+
+{com}. do "/var/folders/8q/n3s905xx58v1wh4kmsps55780000gp/T//SD38974.000000"
+{txt}
+{com}. ***************************** Exercise 2 ***************************************
+. 
+. clear all
+{res}{txt}
+{com}. 
+. * == (1) == *
+. use http://www.stata.com/data/jwooldridge/eacsap/fringe
+{txt}
+{com}. 
+. /* in case the link does not work or change locations, use the following
+> and change your path:
+> cd "/Users/kongqingluo/Desktop/EEE/Empirical Exercise"
+> use fringe.dta */
+. 
+. * == (2) == *
+. keep hrbens exper age educ tenure married male white nrtheast nrthcen south union
+{txt}
+{com}. 
+. * == (3) == *
+. * ===== (b) ===== descriptive stats ===== *
+. summarize
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}exper {c |}{res}        616    18.61688    12.32906          0         60
+{txt}{space 9}age {c |}{res}        616    37.65422    12.69757         16         80
+{txt}{space 5}married {c |}{res}        616    .6866883    .4642169          0          1
+{txt}{space 6}tenure {c |}{res}        616    7.751623    7.775509         .5         25
+{txt}{space 8}educ {c |}{res}        616    12.51461    2.733076          6         18
+{txt}{hline 13}{c +}{hline 57}
+{space 4}nrtheast {c |}{res}        616    .1964286    .3976192          0          1
+{txt}{space 5}nrthcen {c |}{res}        616    .3035714    .4601734          0          1
+{txt}{space 7}south {c |}{res}        616    .3474026    .4765319          0          1
+{txt}{space 8}male {c |}{res}        616    .6412338    .4800282          0          1
+{txt}{space 7}white {c |}{res}        616    .9058442    .2922827          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}union {c |}{res}        616    .3181818     .466149          0          1
+{txt}{space 6}hrbens {c |}{res}        616     .909789    .6650045          0       2.77
+{txt}
+{com}. estpost summarize hrbens exper age educ tenure married male white nrtheast ///
+> nrthcen south union
+
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:e(count)}{space 1}{space 1}{ralign 9:e(sum_w)}{space 1}{space 1}{ralign 9:e(mean)}{space 1}{space 1}{ralign 9:e(Var)}{space 1}{space 1}{ralign 9:e(sd)}{space 1}{space 1}{ralign 9:e(min)}{space 1}{space 1}{ralign 9:e(max)}{space 1}{space 1}{ralign 9:e(sum)}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:hrbens}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:  .909789}}}{space 1}{space 1}{ralign 9:{res:{sf:  .442231}}}{space 1}{space 1}{ralign 9:{res:{sf: .6650045}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:     2.77}}}{space 1}{space 1}{ralign 9:{res:{sf:   560.43}}}{space 1}
+{space 0}{space 0}{ralign 12:exper}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: 18.61688}}}{space 1}{space 1}{ralign 9:{res:{sf: 152.0058}}}{space 1}{space 1}{ralign 9:{res:{sf: 12.32906}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:       60}}}{space 1}{space 1}{ralign 9:{res:{sf:    11468}}}{space 1}
+{space 0}{space 0}{ralign 12:age}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: 37.65422}}}{space 1}{space 1}{ralign 9:{res:{sf: 161.2282}}}{space 1}{space 1}{ralign 9:{res:{sf: 12.69757}}}{space 1}{space 1}{ralign 9:{res:{sf:       16}}}{space 1}{space 1}{ralign 9:{res:{sf:       80}}}{space 1}{space 1}{ralign 9:{res:{sf:    23195}}}{space 1}
+{space 0}{space 0}{ralign 12:educ}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: 12.51461}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.469705}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.733076}}}{space 1}{space 1}{ralign 9:{res:{sf:        6}}}{space 1}{space 1}{ralign 9:{res:{sf:       18}}}{space 1}{space 1}{ralign 9:{res:{sf:     7709}}}{space 1}
+{space 0}{space 0}{ralign 12:tenure}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.751623}}}{space 1}{space 1}{ralign 9:{res:{sf: 60.45853}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.775509}}}{space 1}{space 1}{ralign 9:{res:{sf:       .5}}}{space 1}{space 1}{ralign 9:{res:{sf:       25}}}{space 1}{space 1}{ralign 9:{res:{sf:     4775}}}{space 1}
+{space 0}{space 0}{ralign 12:married}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .6866883}}}{space 1}{space 1}{ralign 9:{res:{sf: .2154973}}}{space 1}{space 1}{ralign 9:{res:{sf: .4642169}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      423}}}{space 1}
+{space 0}{space 0}{ralign 12:male}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .6412338}}}{space 1}{space 1}{ralign 9:{res:{sf: .2304271}}}{space 1}{space 1}{ralign 9:{res:{sf: .4800282}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      395}}}{space 1}
+{space 0}{space 0}{ralign 12:white}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .9058442}}}{space 1}{space 1}{ralign 9:{res:{sf: .0854292}}}{space 1}{space 1}{ralign 9:{res:{sf: .2922827}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      558}}}{space 1}
+{space 0}{space 0}{ralign 12:nrtheast}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .1964286}}}{space 1}{space 1}{ralign 9:{res:{sf:  .158101}}}{space 1}{space 1}{ralign 9:{res:{sf: .3976192}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      121}}}{space 1}
+{space 0}{space 0}{ralign 12:nrthcen}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .3035714}}}{space 1}{space 1}{ralign 9:{res:{sf: .2117596}}}{space 1}{space 1}{ralign 9:{res:{sf: .4601734}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      187}}}{space 1}
+{space 0}{space 0}{ralign 12:south}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .3474026}}}{space 1}{space 1}{ralign 9:{res:{sf: .2270827}}}{space 1}{space 1}{ralign 9:{res:{sf: .4765319}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      214}}}{space 1}
+{space 0}{space 0}{ralign 12:union}{space 1}{c |}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf:      616}}}{space 1}{space 1}{ralign 9:{res:{sf: .3181818}}}{space 1}{space 1}{ralign 9:{res:{sf: .2172949}}}{space 1}{space 1}{ralign 9:{res:{sf:  .466149}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      196}}}{space 1}
+
+{com}. esttab . using "Table_6.tex", cells("mean sd min max count") noobs
+{res}{txt}(output written to {browse  `"Table_6.tex"'})
+
+{com}. 
+. * ===== (c) ===== # of woman ===== *
+. count if male == 0
+  {res}221
+{txt}
+{com}. 
+. * ===== (d) ===== # of married woman tenure larger than sample average ===== *
+. egen meantenure=mean(tenure)
+{txt}
+{com}. count if married == 1 & tenure > meantenure & male ==0
+  {res}53
+{txt}
+{com}. 
+. * ===== (e) ===== mean of hrbens, man&woman *
+. sum hrbens if male == 1
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}hrbens {c |}{res}        395    1.061646    .6714943          0       2.77
+{txt}
+{com}. sum hrbens if male == 0
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}hrbens {c |}{res}        221     .638371    .5597329          0       2.64
+{txt}
+{com}. 
+. * == (4) == Linear Model *
+. reg hrbens exper age educ tenure married male white nrtheast ///
+> nrthcen south union, robust
+
+{txt}Linear regression                               Number of obs     = {res}       616
+                                                {txt}F(11, 604)        =  {res}    36.02
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.3718
+                                                {txt}Root MSE          =    {res} .53183
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      hrbens{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .0029862{col 26}{space 2} .0042485{col 37}{space 1}    0.70{col 46}{space 3}0.482{col 54}{space 4}-.0053574{col 67}{space 3} .0113298
+{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0022495{col 26}{space 2} .0041519{col 37}{space 1}   -0.54{col 46}{space 3}0.588{col 54}{space 4}-.0104034{col 67}{space 3} .0059043
+{txt}{space 8}educ {c |}{col 14}{res}{space 2}  .082204{col 26}{space 2} .0085122{col 37}{space 1}    9.66{col 46}{space 3}0.000{col 54}{space 4}  .065487{col 67}{space 3} .0989211
+{txt}{space 6}tenure {c |}{col 14}{res}{space 2} .0281931{col 26}{space 2} .0037053{col 37}{space 1}    7.61{col 46}{space 3}0.000{col 54}{space 4} .0209164{col 67}{space 3} .0354699
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0899016{col 26}{space 2} .0499158{col 37}{space 1}    1.80{col 46}{space 3}0.072{col 54}{space 4}-.0081281{col 67}{space 3} .1879312
+{txt}{space 8}male {c |}{col 14}{res}{space 2}  .251898{col 26}{space 2} .0496953{col 37}{space 1}    5.07{col 46}{space 3}0.000{col 54}{space 4} .1543015{col 67}{space 3} .3494946
+{txt}{space 7}white {c |}{col 14}{res}{space 2}  .098923{col 26}{space 2} .0721337{col 37}{space 1}    1.37{col 46}{space 3}0.171{col 54}{space 4}-.0427402{col 67}{space 3} .2405862
+{txt}{space 4}nrtheast {c |}{col 14}{res}{space 2}-.0834306{col 26}{space 2} .0723545{col 37}{space 1}   -1.15{col 46}{space 3}0.249{col 54}{space 4}-.2255277{col 67}{space 3} .0586664
+{txt}{space 5}nrthcen {c |}{col 14}{res}{space 2}-.0492621{col 26}{space 2} .0626967{col 37}{space 1}   -0.79{col 46}{space 3}0.432{col 54}{space 4}-.1723922{col 67}{space 3}  .073868
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-.0284978{col 26}{space 2} .0653108{col 37}{space 1}   -0.44{col 46}{space 3}0.663{col 54}{space 4}-.1567617{col 67}{space 3} .0997662
+{txt}{space 7}union {c |}{col 14}{res}{space 2} .3768401{col 26}{space 2} .0535136{col 37}{space 1}    7.04{col 46}{space 3}0.000{col 54}{space 4} .2717448{col 67}{space 3} .4819354
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.6999244{col 26}{space 2} .1803555{col 37}{space 1}   -3.88{col 46}{space 3}0.000{col 54}{space 4}-1.054125{col 67}{space 3}-.3457242
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo hrbens_LPM
+{txt}
+{com}. 
+. * If LPM is needed, we generate a binary variable
+. gen b_hrbens = 0
+{txt}
+{com}. replace b_hrbens = 1 if hrbens > 0
+{txt}(575 real changes made)
+
+{com}. reg b_hrbens exper age educ tenure married male white nrtheast ///
+> nrthcen south union, robust
+
+{txt}Linear regression                               Number of obs     = {res}       616
+                                                {txt}F(11, 604)        =  {res}     3.67
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0765
+                                                {txt}Root MSE          =    {res}  .2419
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    b_hrbens{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}exper {c |}{col 14}{res}{space 2} .0028047{col 26}{space 2} .0034983{col 37}{space 1}    0.80{col 46}{space 3}0.423{col 54}{space 4}-.0040657{col 67}{space 3} .0096751
+{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0003931{col 26}{space 2} .0034848{col 37}{space 1}   -0.11{col 46}{space 3}0.910{col 54}{space 4}-.0072369{col 67}{space 3} .0064508
+{txt}{space 8}educ {c |}{col 14}{res}{space 2} .0130519{col 26}{space 2} .0038033{col 37}{space 1}    3.43{col 46}{space 3}0.001{col 54}{space 4} .0055825{col 67}{space 3} .0205212
+{txt}{space 6}tenure {c |}{col 14}{res}{space 2} .0008115{col 26}{space 2} .0015279{col 37}{space 1}    0.53{col 46}{space 3}0.596{col 54}{space 4}-.0021891{col 67}{space 3} .0038122
+{txt}{space 5}married {c |}{col 14}{res}{space 2} .0410602{col 26}{space 2} .0277887{col 37}{space 1}    1.48{col 46}{space 3}0.140{col 54}{space 4}-.0135139{col 67}{space 3} .0956344
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .0111215{col 26}{space 2} .0267519{col 37}{space 1}    0.42{col 46}{space 3}0.678{col 54}{space 4}-.0414166{col 67}{space 3} .0636595
+{txt}{space 7}white {c |}{col 14}{res}{space 2} .0055907{col 26}{space 2} .0371987{col 37}{space 1}    0.15{col 46}{space 3}0.881{col 54}{space 4}-.0674637{col 67}{space 3} .0786452
+{txt}{space 4}nrtheast {c |}{col 14}{res}{space 2} .0138728{col 26}{space 2} .0306622{col 37}{space 1}    0.45{col 46}{space 3}0.651{col 54}{space 4}-.0463447{col 67}{space 3} .0740903
+{txt}{space 5}nrthcen {c |}{col 14}{res}{space 2}-.0040066{col 26}{space 2} .0297371{col 37}{space 1}   -0.13{col 46}{space 3}0.893{col 54}{space 4}-.0624072{col 67}{space 3}  .054394
+{txt}{space 7}south {c |}{col 14}{res}{space 2} .0004613{col 26}{space 2} .0313053{col 37}{space 1}    0.01{col 46}{space 3}0.988{col 54}{space 4}-.0610192{col 67}{space 3} .0619418
+{txt}{space 7}union {c |}{col 14}{res}{space 2} .0847146{col 26}{space 2}  .016324{col 37}{space 1}    5.19{col 46}{space 3}0.000{col 54}{space 4} .0526559{col 67}{space 3} .1167733
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6573821{col 26}{space 2} .1132531{col 37}{space 1}    5.80{col 46}{space 3}0.000{col 54}{space 4} .4349645{col 67}{space 3} .8797997
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo b_hrbens_LPM
+{txt}
+{com}. 
+. * == (5) == Censored? Coner Solution? *
+. histogram hrbens
+{txt}(bin={res}24{txt}, start={res}0{txt}, width={res}.11541667{txt})
+{res}{txt}
+{com}. graph export histo.png
+{txt}{p 0 4 2}
+file {bf}
+/Users/kongqingluo/Desktop/EEE/Empirical Exercise/histo.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. * == (6) == Tobit *
+. tobit hrbens exper age educ tenure married male white nrtheast ///
+> nrthcen south union, ll
+{res}{txt}
+Refining starting values:
+
+Grid node 0:{space 3}log likelihood = {res:-522.17869}
+
+Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-522.17869}  
+Iteration 1:{space 3}log likelihood = {res:-519.68221}  
+Iteration 2:{space 3}log likelihood = {res:-519.66617}  
+Iteration 3:{space 3}log likelihood = {res:-519.66616}  
+{res}
+{txt}{col 1}Tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:616}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:575}
+{txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:41}
+{txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
+
+{txt}{col 53}{lalign 17:LR chi2({res:11})}{col 70} = {res}{ralign 6:283.86}
+{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-519.66616}{txt}{col 53}{lalign 17:Pseudo R2}{col 70} = {res}{ralign 6:0.2145}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       hrbens{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}exper {c |}{col 15}{res}{space 2} .0040631{col 27}{space 2} .0046628{col 38}{space 1}    0.87{col 47}{space 3}0.384{col 55}{space 4}-.0050941{col 68}{space 3} .0132203
+{txt}{space 10}age {c |}{col 15}{res}{space 2}-.0025859{col 27}{space 2} .0044363{col 38}{space 1}   -0.58{col 47}{space 3}0.560{col 55}{space 4}-.0112983{col 68}{space 3} .0061265
+{txt}{space 9}educ {c |}{col 15}{res}{space 2} .0869168{col 27}{space 2}  .008817{col 38}{space 1}    9.86{col 47}{space 3}0.000{col 55}{space 4} .0696011{col 68}{space 3} .1042325
+{txt}{space 7}tenure {c |}{col 15}{res}{space 2} .0287099{col 27}{space 2} .0037238{col 38}{space 1}    7.71{col 47}{space 3}0.000{col 55}{space 4} .0213968{col 68}{space 3} .0360229
+{txt}{space 6}married {c |}{col 15}{res}{space 2} .1027574{col 27}{space 2} .0538353{col 38}{space 1}    1.91{col 47}{space 3}0.057{col 55}{space 4}-.0029695{col 68}{space 3} .2084842
+{txt}{space 9}male {c |}{col 15}{res}{space 2} .2556765{col 27}{space 2} .0551687{col 38}{space 1}    4.63{col 47}{space 3}0.000{col 55}{space 4} .1473312{col 68}{space 3} .3640219
+{txt}{space 8}white {c |}{col 15}{res}{space 2} .0994408{col 27}{space 2} .0786061{col 38}{space 1}    1.27{col 47}{space 3}0.206{col 55}{space 4}-.0549331{col 68}{space 3} .2538147
+{txt}{space 5}nrtheast {c |}{col 15}{res}{space 2}-.0778461{col 27}{space 2} .0775056{col 38}{space 1}   -1.00{col 47}{space 3}0.316{col 55}{space 4}-.2300588{col 68}{space 3} .0743666
+{txt}{space 6}nrthcen {c |}{col 15}{res}{space 2}-.0489422{col 27}{space 2} .0713984{col 38}{space 1}   -0.69{col 47}{space 3}0.493{col 55}{space 4} -.189161{col 68}{space 3} .0912766
+{txt}{space 8}south {c |}{col 15}{res}{space 2}-.0246854{col 27}{space 2} .0709261{col 38}{space 1}   -0.35{col 47}{space 3}0.728{col 55}{space 4}-.1639768{col 68}{space 3} .1146059
+{txt}{space 8}union {c |}{col 15}{res}{space 2} .4033519{col 27}{space 2} .0522711{col 38}{space 1}    7.72{col 47}{space 3}0.000{col 55}{space 4} .3006971{col 68}{space 3} .5060067
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.8137158{col 27}{space 2} .1880775{col 38}{space 1}   -4.33{col 47}{space 3}0.000{col 55}{space 4} -1.18308{col 68}{space 3}-.4443517
+{txt}{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}var(e.hrbens){c |}{col 15}{res}{space 2}  .308139{col 27}{space 2} .0184054{col 55}{space 4} .2740323{col 68}{space 3} .3464908
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. eststo hrben_tobit1
+{txt}
+{com}. 
+. * == (8) == Tobit, square added *
+. gen sexper = exper^2
+{txt}
+{com}. gen stenure = tenure^2
+{txt}
+{com}. 
+. qui tobit hrbens exper age educ tenure married male white nrtheast ///
+> nrthcen south union sexper stenure, ll
+{txt}
+{com}. 
+. eststo hrbens_tobit2
+{txt}
+{com}. esttab hrbens_LPM b_hrbens_LPM hrben_tobit1 hrbens_tobit2 using "Table_7.tex", ///
+> se ar2 replace
+{res}{txt}{p 0 4 2}
+(file {bf}
+Table_7.tex{rm}
+not found)
+{p_end}
+(output written to {browse  `"Table_7.tex"'})
+
+{com}. 
+. * whether squared terms should be included?
+. * first we harvest the min max of sexper
+. sum exper
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}exper {c |}{res}        616    18.61688    12.32906          0         60
+{txt}
+{com}. * then we create a marginsplot to see the trend
+. margins, at(exper = (1(1)60))
+{res}
+{txt}{col 1}Predictive margins{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:616}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2colreset}{...}
+{lalign 8:1._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:1}}
+{lalign 8:2._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:2}}
+{lalign 8:3._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:3}}
+{lalign 8:4._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:4}}
+{lalign 8:5._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:5}}
+{lalign 8:6._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:6}}
+{lalign 8:7._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:7}}
+{lalign 8:8._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:8}}
+{lalign 8:9._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:9}}
+{lalign 8:10._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:10}}
+{lalign 8:11._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:11}}
+{lalign 8:12._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:12}}
+{lalign 8:13._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:13}}
+{lalign 8:14._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:14}}
+{lalign 8:15._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:15}}
+{lalign 8:16._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:16}}
+{lalign 8:17._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:17}}
+{lalign 8:18._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:18}}
+{lalign 8:19._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:19}}
+{lalign 8:20._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:20}}
+{lalign 8:21._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:21}}
+{lalign 8:22._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:22}}
+{lalign 8:23._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:23}}
+{lalign 8:24._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:24}}
+{lalign 8:25._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:25}}
+{lalign 8:26._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:26}}
+{lalign 8:27._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:27}}
+{lalign 8:28._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:28}}
+{lalign 8:29._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:29}}
+{lalign 8:30._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:30}}
+{lalign 8:31._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:31}}
+{lalign 8:32._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:32}}
+{lalign 8:33._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:33}}
+{lalign 8:34._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:34}}
+{lalign 8:35._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:35}}
+{lalign 8:36._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:36}}
+{lalign 8:37._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:37}}
+{lalign 8:38._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:38}}
+{lalign 8:39._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:39}}
+{lalign 8:40._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:40}}
+{lalign 8:41._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:41}}
+{lalign 8:42._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:42}}
+{lalign 8:43._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:43}}
+{lalign 8:44._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:44}}
+{lalign 8:45._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:45}}
+{lalign 8:46._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:46}}
+{lalign 8:47._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:47}}
+{lalign 8:48._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:48}}
+{lalign 8:49._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:49}}
+{lalign 8:50._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:50}}
+{lalign 8:51._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:51}}
+{lalign 8:52._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:52}}
+{lalign 8:53._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:53}}
+{lalign 8:54._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:54}}
+{lalign 8:55._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:55}}
+{lalign 8:56._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:56}}
+{lalign 8:57._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:57}}
+{lalign 8:58._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:58}}
+{lalign 8:59._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:59}}
+{lalign 8:60._at: }{space 0}{lalign 5:exper} = {res:{ralign 2:60}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}_at {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .3480324{col 26}{space 2} .1520324{col 37}{space 1}    2.29{col 46}{space 3}0.022{col 54}{space 4} .0494551{col 67}{space 3} .6466098
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .3786976{col 26}{space 2} .1436019{col 37}{space 1}    2.64{col 46}{space 3}0.009{col 54}{space 4}  .096677{col 67}{space 3} .6607183
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .4093628{col 26}{space 2} .1351834{col 37}{space 1}    3.03{col 46}{space 3}0.003{col 54}{space 4} .1438754{col 67}{space 3} .6748502
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}  .440028{col 26}{space 2} .1267792{col 37}{space 1}    3.47{col 46}{space 3}0.001{col 54}{space 4} .1910456{col 67}{space 3} .6890104
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} .4706932{col 26}{space 2} .1183924{col 37}{space 1}    3.98{col 46}{space 3}0.000{col 54}{space 4} .2381817{col 67}{space 3} .7032046
+{txt}{space 10}6  {c |}{col 14}{res}{space 2} .5013584{col 26}{space 2} .1100269{col 37}{space 1}    4.56{col 46}{space 3}0.000{col 54}{space 4} .2852759{col 67}{space 3} .7174409
+{txt}{space 10}7  {c |}{col 14}{res}{space 2} .5320236{col 26}{space 2} .1016881{col 37}{space 1}    5.23{col 46}{space 3}0.000{col 54}{space 4} .3323177{col 67}{space 3} .7317294
+{txt}{space 10}8  {c |}{col 14}{res}{space 2} .5626888{col 26}{space 2}  .093383{col 37}{space 1}    6.03{col 46}{space 3}0.000{col 54}{space 4} .3792933{col 67}{space 3} .7460843
+{txt}{space 10}9  {c |}{col 14}{res}{space 2}  .593354{col 26}{space 2} .0851217{col 37}{space 1}    6.97{col 46}{space 3}0.000{col 54}{space 4}  .426183{col 67}{space 3} .7605249
+{txt}{space 9}10  {c |}{col 14}{res}{space 2} .6240192{col 26}{space 2}  .076918{col 37}{space 1}    8.11{col 46}{space 3}0.000{col 54}{space 4} .4729594{col 67}{space 3} .7750789
+{txt}{space 9}11  {c |}{col 14}{res}{space 2} .6546844{col 26}{space 2} .0687927{col 37}{space 1}    9.52{col 46}{space 3}0.000{col 54}{space 4} .5195819{col 67}{space 3} .7897868
+{txt}{space 9}12  {c |}{col 14}{res}{space 2} .6853496{col 26}{space 2} .0607773{col 37}{space 1}   11.28{col 46}{space 3}0.000{col 54}{space 4} .5659887{col 67}{space 3} .8047104
+{txt}{space 9}13  {c |}{col 14}{res}{space 2} .7160148{col 26}{space 2} .0529216{col 37}{space 1}   13.53{col 46}{space 3}0.000{col 54}{space 4} .6120817{col 67}{space 3} .8199478
+{txt}{space 9}14  {c |}{col 14}{res}{space 2}   .74668{col 26}{space 2} .0453088{col 37}{space 1}   16.48{col 46}{space 3}0.000{col 54}{space 4} .6576977{col 67}{space 3} .8356622
+{txt}{space 9}15  {c |}{col 14}{res}{space 2} .7773451{col 26}{space 2} .0380849{col 37}{space 1}   20.41{col 46}{space 3}0.000{col 54}{space 4} .7025499{col 67}{space 3} .8521404
+{txt}{space 9}16  {c |}{col 14}{res}{space 2} .8080103{col 26}{space 2} .0315185{col 37}{space 1}   25.64{col 46}{space 3}0.000{col 54}{space 4} .7461111{col 67}{space 3} .8699096
+{txt}{space 9}17  {c |}{col 14}{res}{space 2} .8386755{col 26}{space 2} .0261102{col 37}{space 1}   32.12{col 46}{space 3}0.000{col 54}{space 4} .7873976{col 67}{space 3} .8899535
+{txt}{space 9}18  {c |}{col 14}{res}{space 2} .8693407{col 26}{space 2} .0227035{col 37}{space 1}   38.29{col 46}{space 3}0.000{col 54}{space 4} .8247532{col 67}{space 3} .9139283
+{txt}{space 9}19  {c |}{col 14}{res}{space 2} .9000059{col 26}{space 2} .0222382{col 37}{space 1}   40.47{col 46}{space 3}0.000{col 54}{space 4} .8563323{col 67}{space 3} .9436796
+{txt}{space 9}20  {c |}{col 14}{res}{space 2} .9306711{col 26}{space 2} .0248797{col 37}{space 1}   37.41{col 46}{space 3}0.000{col 54}{space 4} .8818097{col 67}{space 3} .9795325
+{txt}{space 9}21  {c |}{col 14}{res}{space 2} .9613363{col 26}{space 2} .0298134{col 37}{space 1}   32.25{col 46}{space 3}0.000{col 54}{space 4} .9027855{col 67}{space 3} 1.019887
+{txt}{space 9}22  {c |}{col 14}{res}{space 2} .9920015{col 26}{space 2} .0361118{col 37}{space 1}   27.47{col 46}{space 3}0.000{col 54}{space 4} .9210814{col 67}{space 3} 1.062922
+{txt}{space 9}23  {c |}{col 14}{res}{space 2} 1.022667{col 26}{space 2} .0431817{col 37}{space 1}   23.68{col 46}{space 3}0.000{col 54}{space 4} .9378619{col 67}{space 3} 1.107472
+{txt}{space 9}24  {c |}{col 14}{res}{space 2} 1.053332{col 26}{space 2} .0507014{col 37}{space 1}   20.78{col 46}{space 3}0.000{col 54}{space 4} .9537591{col 67}{space 3} 1.152905
+{txt}{space 9}25  {c |}{col 14}{res}{space 2} 1.083997{col 26}{space 2} .0584978{col 37}{space 1}   18.53{col 46}{space 3}0.000{col 54}{space 4}  .969113{col 67}{space 3} 1.198881
+{txt}{space 9}26  {c |}{col 14}{res}{space 2} 1.114662{col 26}{space 2} .0664735{col 37}{space 1}   16.77{col 46}{space 3}0.000{col 54}{space 4} .9841146{col 67}{space 3}  1.24521
+{txt}{space 9}27  {c |}{col 14}{res}{space 2} 1.145327{col 26}{space 2}  .074571{col 37}{space 1}   15.36{col 46}{space 3}0.000{col 54}{space 4} .9988771{col 67}{space 3} 1.291778
+{txt}{space 9}28  {c |}{col 14}{res}{space 2} 1.175993{col 26}{space 2} .0827546{col 37}{space 1}   14.21{col 46}{space 3}0.000{col 54}{space 4}  1.01347{col 67}{space 3} 1.338515
+{txt}{space 9}29  {c |}{col 14}{res}{space 2} 1.206658{col 26}{space 2}  .091001{col 37}{space 1}   13.26{col 46}{space 3}0.000{col 54}{space 4}  1.02794{col 67}{space 3} 1.385375
+{txt}{space 9}30  {c |}{col 14}{res}{space 2} 1.237323{col 26}{space 2} .0992947{col 37}{space 1}   12.46{col 46}{space 3}0.000{col 54}{space 4} 1.042318{col 67}{space 3} 1.432329
+{txt}{space 9}31  {c |}{col 14}{res}{space 2} 1.267988{col 26}{space 2} .1076246{col 37}{space 1}   11.78{col 46}{space 3}0.000{col 54}{space 4} 1.056624{col 67}{space 3} 1.479353
+{txt}{space 9}32  {c |}{col 14}{res}{space 2} 1.298653{col 26}{space 2}  .115983{col 37}{space 1}   11.20{col 46}{space 3}0.000{col 54}{space 4} 1.070874{col 67}{space 3} 1.526433
+{txt}{space 9}33  {c |}{col 14}{res}{space 2} 1.329319{col 26}{space 2} .1243641{col 37}{space 1}   10.69{col 46}{space 3}0.000{col 54}{space 4} 1.085079{col 67}{space 3} 1.573558
+{txt}{space 9}34  {c |}{col 14}{res}{space 2} 1.359984{col 26}{space 2} .1327637{col 37}{space 1}   10.24{col 46}{space 3}0.000{col 54}{space 4} 1.099248{col 67}{space 3} 1.620719
+{txt}{space 9}35  {c |}{col 14}{res}{space 2} 1.390649{col 26}{space 2} .1411784{col 37}{space 1}    9.85{col 46}{space 3}0.000{col 54}{space 4} 1.113388{col 67}{space 3}  1.66791
+{txt}{space 9}36  {c |}{col 14}{res}{space 2} 1.421314{col 26}{space 2} .1496056{col 37}{space 1}    9.50{col 46}{space 3}0.000{col 54}{space 4} 1.127503{col 67}{space 3} 1.715126
+{txt}{space 9}37  {c |}{col 14}{res}{space 2} 1.451979{col 26}{space 2} .1580435{col 37}{space 1}    9.19{col 46}{space 3}0.000{col 54}{space 4} 1.141597{col 67}{space 3} 1.762362
+{txt}{space 9}38  {c |}{col 14}{res}{space 2} 1.482645{col 26}{space 2} .1664903{col 37}{space 1}    8.91{col 46}{space 3}0.000{col 54}{space 4} 1.155673{col 67}{space 3} 1.809616
+{txt}{space 9}39  {c |}{col 14}{res}{space 2}  1.51331{col 26}{space 2} .1749447{col 37}{space 1}    8.65{col 46}{space 3}0.000{col 54}{space 4} 1.169735{col 67}{space 3} 1.856885
+{txt}{space 9}40  {c |}{col 14}{res}{space 2} 1.543975{col 26}{space 2} .1834058{col 37}{space 1}    8.42{col 46}{space 3}0.000{col 54}{space 4} 1.183783{col 67}{space 3} 1.904167
+{txt}{space 9}41  {c |}{col 14}{res}{space 2}  1.57464{col 26}{space 2} .1918726{col 37}{space 1}    8.21{col 46}{space 3}0.000{col 54}{space 4}  1.19782{col 67}{space 3}  1.95146
+{txt}{space 9}42  {c |}{col 14}{res}{space 2} 1.605305{col 26}{space 2} .2003444{col 37}{space 1}    8.01{col 46}{space 3}0.000{col 54}{space 4} 1.211848{col 67}{space 3} 1.998763
+{txt}{space 9}43  {c |}{col 14}{res}{space 2} 1.635971{col 26}{space 2} .2088206{col 37}{space 1}    7.83{col 46}{space 3}0.000{col 54}{space 4} 1.225867{col 67}{space 3} 2.046075
+{txt}{space 9}44  {c |}{col 14}{res}{space 2} 1.666636{col 26}{space 2} .2173007{col 37}{space 1}    7.67{col 46}{space 3}0.000{col 54}{space 4} 1.239878{col 67}{space 3} 2.093394
+{txt}{space 9}45  {c |}{col 14}{res}{space 2} 1.697301{col 26}{space 2} .2257842{col 37}{space 1}    7.52{col 46}{space 3}0.000{col 54}{space 4} 1.253882{col 67}{space 3}  2.14072
+{txt}{space 9}46  {c |}{col 14}{res}{space 2} 1.727966{col 26}{space 2} .2342708{col 37}{space 1}    7.38{col 46}{space 3}0.000{col 54}{space 4}  1.26788{col 67}{space 3} 2.188052
+{txt}{space 9}47  {c |}{col 14}{res}{space 2} 1.758631{col 26}{space 2} .2427601{col 37}{space 1}    7.24{col 46}{space 3}0.000{col 54}{space 4} 1.281873{col 67}{space 3} 2.235389
+{txt}{space 9}48  {c |}{col 14}{res}{space 2} 1.789297{col 26}{space 2} .2512519{col 37}{space 1}    7.12{col 46}{space 3}0.000{col 54}{space 4} 1.295861{col 67}{space 3} 2.282732
+{txt}{space 9}49  {c |}{col 14}{res}{space 2} 1.819962{col 26}{space 2} .2597459{col 37}{space 1}    7.01{col 46}{space 3}0.000{col 54}{space 4} 1.309845{col 67}{space 3} 2.330078
+{txt}{space 9}50  {c |}{col 14}{res}{space 2} 1.850627{col 26}{space 2}  .268242{col 37}{space 1}    6.90{col 46}{space 3}0.000{col 54}{space 4} 1.323825{col 67}{space 3} 2.377429
+{txt}{space 9}51  {c |}{col 14}{res}{space 2} 1.881292{col 26}{space 2} .2767399{col 37}{space 1}    6.80{col 46}{space 3}0.000{col 54}{space 4} 1.337801{col 67}{space 3} 2.424783
+{txt}{space 9}52  {c |}{col 14}{res}{space 2} 1.911957{col 26}{space 2} .2852394{col 37}{space 1}    6.70{col 46}{space 3}0.000{col 54}{space 4} 1.351774{col 67}{space 3} 2.472141
+{txt}{space 9}53  {c |}{col 14}{res}{space 2} 1.942623{col 26}{space 2} .2937405{col 37}{space 1}    6.61{col 46}{space 3}0.000{col 54}{space 4} 1.365744{col 67}{space 3} 2.519501
+{txt}{space 9}54  {c |}{col 14}{res}{space 2} 1.973288{col 26}{space 2} .3022429{col 37}{space 1}    6.53{col 46}{space 3}0.000{col 54}{space 4} 1.379711{col 67}{space 3} 2.566864
+{txt}{space 9}55  {c |}{col 14}{res}{space 2} 2.003953{col 26}{space 2} .3107466{col 37}{space 1}    6.45{col 46}{space 3}0.000{col 54}{space 4} 1.393676{col 67}{space 3}  2.61423
+{txt}{space 9}56  {c |}{col 14}{res}{space 2} 2.034618{col 26}{space 2} .3192516{col 37}{space 1}    6.37{col 46}{space 3}0.000{col 54}{space 4} 1.407638{col 67}{space 3} 2.661598
+{txt}{space 9}57  {c |}{col 14}{res}{space 2} 2.065283{col 26}{space 2} .3277575{col 37}{space 1}    6.30{col 46}{space 3}0.000{col 54}{space 4} 1.421598{col 67}{space 3} 2.708968
+{txt}{space 9}58  {c |}{col 14}{res}{space 2} 2.095949{col 26}{space 2} .3362645{col 37}{space 1}    6.23{col 46}{space 3}0.000{col 54}{space 4} 1.435557{col 67}{space 3}  2.75634
+{txt}{space 9}59  {c |}{col 14}{res}{space 2} 2.126614{col 26}{space 2} .3447725{col 37}{space 1}    6.17{col 46}{space 3}0.000{col 54}{space 4} 1.449513{col 67}{space 3} 2.803714
+{txt}{space 9}60  {c |}{col 14}{res}{space 2} 2.157279{col 26}{space 2} .3532813{col 37}{space 1}    6.11{col 46}{space 3}0.000{col 54}{space 4} 1.463468{col 67}{space 3}  2.85109
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. marginsplot
+{res}
+{text}{p 0 0 2}Variables that uniquely identify margins: {bf:exper}{p_end}
+{res}{txt}
+{com}. graph export mp1_exper.png
+{txt}{p 0 4 2}
+file {bf}
+/Users/kongqingluo/Desktop/EEE/Empirical Exercise/mp1_exper.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. sum tenure
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}tenure {c |}{res}        616    7.751623    7.775509         .5         25
+{txt}
+{com}. margins, at(tenure = (1(0.2)25))
+{res}
+{txt}{col 1}Predictive margins{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:616}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2colreset}{...}
+{lalign 9:1._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:1}}
+{lalign 9:2._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:1.2}}
+{lalign 9:3._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:1.4}}
+{lalign 9:4._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:1.6}}
+{lalign 9:5._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:1.8}}
+{lalign 9:6._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:2}}
+{lalign 9:7._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:2.2}}
+{lalign 9:8._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:2.4}}
+{lalign 9:9._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:2.6}}
+{lalign 9:10._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:2.8}}
+{lalign 9:11._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:3}}
+{lalign 9:12._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:3.2}}
+{lalign 9:13._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:3.4}}
+{lalign 9:14._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:3.6}}
+{lalign 9:15._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:3.8}}
+{lalign 9:16._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:4}}
+{lalign 9:17._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:4.2}}
+{lalign 9:18._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:4.4}}
+{lalign 9:19._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:4.6}}
+{lalign 9:20._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:4.8}}
+{lalign 9:21._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:5}}
+{lalign 9:22._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:5.2}}
+{lalign 9:23._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:5.4}}
+{lalign 9:24._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:5.6}}
+{lalign 9:25._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:5.8}}
+{lalign 9:26._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:6}}
+{lalign 9:27._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:6.2}}
+{lalign 9:28._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:6.4}}
+{lalign 9:29._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:6.6}}
+{lalign 9:30._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:6.8}}
+{lalign 9:31._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:7}}
+{lalign 9:32._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:7.2}}
+{lalign 9:33._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:7.4}}
+{lalign 9:34._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:7.6}}
+{lalign 9:35._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:7.8}}
+{lalign 9:36._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:8}}
+{lalign 9:37._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:8.2}}
+{lalign 9:38._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:8.4}}
+{lalign 9:39._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:8.6}}
+{lalign 9:40._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:8.8}}
+{lalign 9:41._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:9}}
+{lalign 9:42._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:9.2}}
+{lalign 9:43._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:9.4}}
+{lalign 9:44._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:9.6}}
+{lalign 9:45._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:9.8}}
+{lalign 9:46._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:10}}
+{lalign 9:47._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:10.2}}
+{lalign 9:48._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:10.4}}
+{lalign 9:49._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:10.6}}
+{lalign 9:50._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:10.8}}
+{lalign 9:51._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:11}}
+{lalign 9:52._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:11.2}}
+{lalign 9:53._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:11.4}}
+{lalign 9:54._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:11.6}}
+{lalign 9:55._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:11.8}}
+{lalign 9:56._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:12}}
+{lalign 9:57._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:12.2}}
+{lalign 9:58._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:12.4}}
+{lalign 9:59._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:12.6}}
+{lalign 9:60._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:12.8}}
+{lalign 9:61._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:13}}
+{lalign 9:62._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:13.2}}
+{lalign 9:63._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:13.4}}
+{lalign 9:64._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:13.6}}
+{lalign 9:65._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:13.8}}
+{lalign 9:66._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:14}}
+{lalign 9:67._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:14.2}}
+{lalign 9:68._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:14.4}}
+{lalign 9:69._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:14.6}}
+{lalign 9:70._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:14.8}}
+{lalign 9:71._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:15}}
+{lalign 9:72._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:15.2}}
+{lalign 9:73._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:15.4}}
+{lalign 9:74._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:15.6}}
+{lalign 9:75._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:15.8}}
+{lalign 9:76._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:16}}
+{lalign 9:77._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:16.2}}
+{lalign 9:78._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:16.4}}
+{lalign 9:79._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:16.6}}
+{lalign 9:80._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:16.8}}
+{lalign 9:81._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:17}}
+{lalign 9:82._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:17.2}}
+{lalign 9:83._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:17.4}}
+{lalign 9:84._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:17.6}}
+{lalign 9:85._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:17.8}}
+{lalign 9:86._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:18}}
+{lalign 9:87._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:18.2}}
+{lalign 9:88._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:18.4}}
+{lalign 9:89._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:18.6}}
+{lalign 9:90._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:18.8}}
+{lalign 9:91._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:19}}
+{lalign 9:92._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:19.2}}
+{lalign 9:93._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:19.4}}
+{lalign 9:94._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:19.6}}
+{lalign 9:95._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:19.8}}
+{lalign 9:96._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:20}}
+{lalign 9:97._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:20.2}}
+{lalign 9:98._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:20.4}}
+{lalign 9:99._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:20.6}}
+{lalign 9:100._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:20.8}}
+{lalign 9:101._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:21}}
+{lalign 9:102._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:21.2}}
+{lalign 9:103._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:21.4}}
+{lalign 9:104._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:21.6}}
+{lalign 9:105._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:21.8}}
+{lalign 9:106._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:22}}
+{lalign 9:107._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:22.2}}
+{lalign 9:108._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:22.4}}
+{lalign 9:109._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:22.6}}
+{lalign 9:110._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:22.8}}
+{lalign 9:111._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:23}}
+{lalign 9:112._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:23.2}}
+{lalign 9:113._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:23.4}}
+{lalign 9:114._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:23.6}}
+{lalign 9:115._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:23.8}}
+{lalign 9:116._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:24}}
+{lalign 9:117._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:24.2}}
+{lalign 9:118._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:24.4}}
+{lalign 9:119._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:24.6}}
+{lalign 9:120._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:24.8}}
+{lalign 9:121._at: }{space 0}{lalign 6:tenure} = {res:{ralign 4:25}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}_at {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .4957473{col 26}{space 2} .0743672{col 37}{space 1}    6.67{col 46}{space 3}0.000{col 54}{space 4} .3496972{col 67}{space 3} .6417975
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .5073745{col 26}{space 2}  .072365{col 37}{space 1}    7.01{col 46}{space 3}0.000{col 54}{space 4} .3652565{col 67}{space 3} .6494925
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .5190016{col 26}{space 2} .0703684{col 37}{space 1}    7.38{col 46}{space 3}0.000{col 54}{space 4} .3808046{col 67}{space 3} .6571986
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} .5306287{col 26}{space 2} .0683781{col 37}{space 1}    7.76{col 46}{space 3}0.000{col 54}{space 4} .3963407{col 67}{space 3} .6649168
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} .5422559{col 26}{space 2} .0663944{col 37}{space 1}    8.17{col 46}{space 3}0.000{col 54}{space 4} .4118636{col 67}{space 3} .6726481
+{txt}{space 10}6  {c |}{col 14}{res}{space 2}  .553883{col 26}{space 2}  .064418{col 37}{space 1}    8.60{col 46}{space 3}0.000{col 54}{space 4} .4273722{col 67}{space 3} .6803938
+{txt}{space 10}7  {c |}{col 14}{res}{space 2} .5655102{col 26}{space 2} .0624496{col 37}{space 1}    9.06{col 46}{space 3}0.000{col 54}{space 4} .4428651{col 67}{space 3} .6881553
+{txt}{space 10}8  {c |}{col 14}{res}{space 2} .5771373{col 26}{space 2}   .06049{col 37}{space 1}    9.54{col 46}{space 3}0.000{col 54}{space 4} .4583407{col 67}{space 3} .6959339
+{txt}{space 10}9  {c |}{col 14}{res}{space 2} .5887644{col 26}{space 2} .0585401{col 37}{space 1}   10.06{col 46}{space 3}0.000{col 54}{space 4} .4737972{col 67}{space 3} .7037316
+{txt}{space 9}10  {c |}{col 14}{res}{space 2} .6003916{col 26}{space 2} .0566008{col 37}{space 1}   10.61{col 46}{space 3}0.000{col 54}{space 4} .4892329{col 67}{space 3} .7115502
+{txt}{space 9}11  {c |}{col 14}{res}{space 2} .6120187{col 26}{space 2} .0546734{col 37}{space 1}   11.19{col 46}{space 3}0.000{col 54}{space 4} .5046453{col 67}{space 3} .7193921
+{txt}{space 9}12  {c |}{col 14}{res}{space 2} .6236458{col 26}{space 2}  .052759{col 37}{space 1}   11.82{col 46}{space 3}0.000{col 54}{space 4} .5200321{col 67}{space 3} .7272596
+{txt}{space 9}13  {c |}{col 14}{res}{space 2}  .635273{col 26}{space 2} .0508593{col 37}{space 1}   12.49{col 46}{space 3}0.000{col 54}{space 4} .5353902{col 67}{space 3} .7351558
+{txt}{space 9}14  {c |}{col 14}{res}{space 2} .6469001{col 26}{space 2} .0489758{col 37}{space 1}   13.21{col 46}{space 3}0.000{col 54}{space 4} .5507163{col 67}{space 3} .7430839
+{txt}{space 9}15  {c |}{col 14}{res}{space 2} .6585272{col 26}{space 2} .0471105{col 37}{space 1}   13.98{col 46}{space 3}0.000{col 54}{space 4} .5660066{col 67}{space 3} .7510479
+{txt}{space 9}16  {c |}{col 14}{res}{space 2} .6701544{col 26}{space 2} .0452658{col 37}{space 1}   14.80{col 46}{space 3}0.000{col 54}{space 4} .5812567{col 67}{space 3} .7590521
+{txt}{space 9}17  {c |}{col 14}{res}{space 2} .6817815{col 26}{space 2} .0434441{col 37}{space 1}   15.69{col 46}{space 3}0.000{col 54}{space 4} .5964615{col 67}{space 3} .7671016
+{txt}{space 9}18  {c |}{col 14}{res}{space 2} .6934087{col 26}{space 2} .0416485{col 37}{space 1}   16.65{col 46}{space 3}0.000{col 54}{space 4} .6116149{col 67}{space 3} .7752024
+{txt}{space 9}19  {c |}{col 14}{res}{space 2} .7050358{col 26}{space 2} .0398826{col 37}{space 1}   17.68{col 46}{space 3}0.000{col 54}{space 4} .6267101{col 67}{space 3} .7833614
+{txt}{space 9}20  {c |}{col 14}{res}{space 2} .7166629{col 26}{space 2} .0381504{col 37}{space 1}   18.79{col 46}{space 3}0.000{col 54}{space 4} .6417391{col 67}{space 3} .7915868
+{txt}{space 9}21  {c |}{col 14}{res}{space 2} .7282901{col 26}{space 2} .0364569{col 37}{space 1}   19.98{col 46}{space 3}0.000{col 54}{space 4} .6566922{col 67}{space 3}  .799888
+{txt}{space 9}22  {c |}{col 14}{res}{space 2} .7399172{col 26}{space 2} .0348075{col 37}{space 1}   21.26{col 46}{space 3}0.000{col 54}{space 4} .6715585{col 67}{space 3} .8082759
+{txt}{space 9}23  {c |}{col 14}{res}{space 2} .7515443{col 26}{space 2}  .033209{col 37}{space 1}   22.63{col 46}{space 3}0.000{col 54}{space 4}  .686325{col 67}{space 3} .8167637
+{txt}{space 9}24  {c |}{col 14}{res}{space 2} .7631715{col 26}{space 2} .0316689{col 37}{space 1}   24.10{col 46}{space 3}0.000{col 54}{space 4} .7009767{col 67}{space 3} .8253663
+{txt}{space 9}25  {c |}{col 14}{res}{space 2} .7747986{col 26}{space 2} .0301963{col 37}{space 1}   25.66{col 46}{space 3}0.000{col 54}{space 4} .7154959{col 67}{space 3} .8341013
+{txt}{space 9}26  {c |}{col 14}{res}{space 2} .7864258{col 26}{space 2} .0288015{col 37}{space 1}   27.31{col 46}{space 3}0.000{col 54}{space 4} .7298623{col 67}{space 3} .8429892
+{txt}{space 9}27  {c |}{col 14}{res}{space 2} .7980529{col 26}{space 2} .0274963{col 37}{space 1}   29.02{col 46}{space 3}0.000{col 54}{space 4} .7440527{col 67}{space 3}  .852053
+{txt}{space 9}28  {c |}{col 14}{res}{space 2}   .80968{col 26}{space 2} .0262941{col 37}{space 1}   30.79{col 46}{space 3}0.000{col 54}{space 4} .7580409{col 67}{space 3} .8613192
+{txt}{space 9}29  {c |}{col 14}{res}{space 2} .8213072{col 26}{space 2} .0252096{col 37}{space 1}   32.58{col 46}{space 3}0.000{col 54}{space 4} .7717978{col 67}{space 3} .8708165
+{txt}{space 9}30  {c |}{col 14}{res}{space 2} .8329343{col 26}{space 2} .0242587{col 37}{space 1}   34.34{col 46}{space 3}0.000{col 54}{space 4} .7852925{col 67}{space 3} .8805761
+{txt}{space 9}31  {c |}{col 14}{res}{space 2} .8445614{col 26}{space 2} .0234575{col 37}{space 1}   36.00{col 46}{space 3}0.000{col 54}{space 4} .7984931{col 67}{space 3} .8906297
+{txt}{space 9}32  {c |}{col 14}{res}{space 2} .8561886{col 26}{space 2} .0228218{col 37}{space 1}   37.52{col 46}{space 3}0.000{col 54}{space 4} .8113686{col 67}{space 3} .9010085
+{txt}{space 9}33  {c |}{col 14}{res}{space 2} .8678157{col 26}{space 2} .0223658{col 37}{space 1}   38.80{col 46}{space 3}0.000{col 54}{space 4} .8238913{col 67}{space 3} .9117401
+{txt}{space 9}34  {c |}{col 14}{res}{space 2} .8794428{col 26}{space 2} .0221006{col 37}{space 1}   39.79{col 46}{space 3}0.000{col 54}{space 4} .8360393{col 67}{space 3} .9228464
+{txt}{space 9}35  {c |}{col 14}{res}{space 2}   .89107{col 26}{space 2} .0220331{col 37}{space 1}   40.44{col 46}{space 3}0.000{col 54}{space 4} .8477991{col 67}{space 3} .9343409
+{txt}{space 9}36  {c |}{col 14}{res}{space 2} .9026971{col 26}{space 2}  .022165{col 37}{space 1}   40.73{col 46}{space 3}0.000{col 54}{space 4} .8591672{col 67}{space 3} .9462271
+{txt}{space 9}37  {c |}{col 14}{res}{space 2} .9143242{col 26}{space 2} .0224929{col 37}{space 1}   40.65{col 46}{space 3}0.000{col 54}{space 4} .8701503{col 67}{space 3} .9584982
+{txt}{space 9}38  {c |}{col 14}{res}{space 2} .9259514{col 26}{space 2} .0230084{col 37}{space 1}   40.24{col 46}{space 3}0.000{col 54}{space 4} .8807651{col 67}{space 3} .9711377
+{txt}{space 9}39  {c |}{col 14}{res}{space 2} .9375786{col 26}{space 2} .0236992{col 37}{space 1}   39.56{col 46}{space 3}0.000{col 54}{space 4} .8910355{col 67}{space 3} .9841216
+{txt}{space 9}40  {c |}{col 14}{res}{space 2} .9492057{col 26}{space 2} .0245506{col 37}{space 1}   38.66{col 46}{space 3}0.000{col 54}{space 4} .9009905{col 67}{space 3} .9974208
+{txt}{space 9}41  {c |}{col 14}{res}{space 2} .9608328{col 26}{space 2} .0255466{col 37}{space 1}   37.61{col 46}{space 3}0.000{col 54}{space 4} .9106618{col 67}{space 3} 1.011004
+{txt}{space 9}42  {c |}{col 14}{res}{space 2} .9724599{col 26}{space 2} .0266708{col 37}{space 1}   36.46{col 46}{space 3}0.000{col 54}{space 4}  .920081{col 67}{space 3} 1.024839
+{txt}{space 9}43  {c |}{col 14}{res}{space 2} .9840871{col 26}{space 2} .0279078{col 37}{space 1}   35.26{col 46}{space 3}0.000{col 54}{space 4} .9292787{col 67}{space 3} 1.038895
+{txt}{space 9}44  {c |}{col 14}{res}{space 2} .9957142{col 26}{space 2} .0292434{col 37}{space 1}   34.05{col 46}{space 3}0.000{col 54}{space 4} .9382829{col 67}{space 3} 1.053146
+{txt}{space 9}45  {c |}{col 14}{res}{space 2} 1.007341{col 26}{space 2} .0306646{col 37}{space 1}   32.85{col 46}{space 3}0.000{col 54}{space 4}  .947119{col 67}{space 3} 1.067564
+{txt}{space 9}46  {c |}{col 14}{res}{space 2} 1.018968{col 26}{space 2} .0321601{col 37}{space 1}   31.68{col 46}{space 3}0.000{col 54}{space 4} .9558091{col 67}{space 3} 1.082128
+{txt}{space 9}47  {c |}{col 14}{res}{space 2} 1.030596{col 26}{space 2}   .03372{col 37}{space 1}   30.56{col 46}{space 3}0.000{col 54}{space 4} .9643727{col 67}{space 3} 1.096818
+{txt}{space 9}48  {c |}{col 14}{res}{space 2} 1.042223{col 26}{space 2} .0353357{col 37}{space 1}   29.49{col 46}{space 3}0.000{col 54}{space 4} .9728267{col 67}{space 3} 1.111619
+{txt}{space 9}49  {c |}{col 14}{res}{space 2}  1.05385{col 26}{space 2} .0370001{col 37}{space 1}   28.48{col 46}{space 3}0.000{col 54}{space 4} .9811853{col 67}{space 3} 1.126515
+{txt}{space 9}50  {c |}{col 14}{res}{space 2} 1.065477{col 26}{space 2} .0387067{col 37}{space 1}   27.53{col 46}{space 3}0.000{col 54}{space 4} .9894607{col 67}{space 3} 1.141493
+{txt}{space 9}51  {c |}{col 14}{res}{space 2} 1.077104{col 26}{space 2} .0404502{col 37}{space 1}   26.63{col 46}{space 3}0.000{col 54}{space 4} .9976637{col 67}{space 3} 1.156545
+{txt}{space 9}52  {c |}{col 14}{res}{space 2} 1.088731{col 26}{space 2} .0422262{col 37}{space 1}   25.78{col 46}{space 3}0.000{col 54}{space 4} 1.005803{col 67}{space 3}  1.17166
+{txt}{space 9}53  {c |}{col 14}{res}{space 2} 1.100358{col 26}{space 2} .0440305{col 37}{space 1}   24.99{col 46}{space 3}0.000{col 54}{space 4} 1.013887{col 67}{space 3}  1.18683
+{txt}{space 9}54  {c |}{col 14}{res}{space 2} 1.111986{col 26}{space 2}   .04586{col 37}{space 1}   24.25{col 46}{space 3}0.000{col 54}{space 4} 1.021921{col 67}{space 3}  1.20205
+{txt}{space 9}55  {c |}{col 14}{res}{space 2} 1.123613{col 26}{space 2} .0477117{col 37}{space 1}   23.55{col 46}{space 3}0.000{col 54}{space 4} 1.029911{col 67}{space 3} 1.217314
+{txt}{space 9}56  {c |}{col 14}{res}{space 2}  1.13524{col 26}{space 2} .0495831{col 37}{space 1}   22.90{col 46}{space 3}0.000{col 54}{space 4} 1.037863{col 67}{space 3} 1.232616
+{txt}{space 9}57  {c |}{col 14}{res}{space 2} 1.146867{col 26}{space 2}  .051472{col 37}{space 1}   22.28{col 46}{space 3}0.000{col 54}{space 4} 1.045781{col 67}{space 3} 1.247953
+{txt}{space 9}58  {c |}{col 14}{res}{space 2} 1.158494{col 26}{space 2} .0533767{col 37}{space 1}   21.70{col 46}{space 3}0.000{col 54}{space 4} 1.053667{col 67}{space 3} 1.263321
+{txt}{space 9}59  {c |}{col 14}{res}{space 2} 1.170121{col 26}{space 2} .0552954{col 37}{space 1}   21.16{col 46}{space 3}0.000{col 54}{space 4} 1.061526{col 67}{space 3} 1.278716
+{txt}{space 9}60  {c |}{col 14}{res}{space 2} 1.181748{col 26}{space 2} .0572268{col 37}{space 1}   20.65{col 46}{space 3}0.000{col 54}{space 4}  1.06936{col 67}{space 3} 1.294136
+{txt}{space 9}61  {c |}{col 14}{res}{space 2} 1.193376{col 26}{space 2} .0591696{col 37}{space 1}   20.17{col 46}{space 3}0.000{col 54}{space 4} 1.077172{col 67}{space 3} 1.309579
+{txt}{space 9}62  {c |}{col 14}{res}{space 2} 1.205003{col 26}{space 2} .0611228{col 37}{space 1}   19.71{col 46}{space 3}0.000{col 54}{space 4} 1.084963{col 67}{space 3} 1.325042
+{txt}{space 9}63  {c |}{col 14}{res}{space 2}  1.21663{col 26}{space 2} .0630853{col 37}{space 1}   19.29{col 46}{space 3}0.000{col 54}{space 4} 1.092736{col 67}{space 3} 1.340523
+{txt}{space 9}64  {c |}{col 14}{res}{space 2} 1.228257{col 26}{space 2} .0650563{col 37}{space 1}   18.88{col 46}{space 3}0.000{col 54}{space 4} 1.100492{col 67}{space 3} 1.356021
+{txt}{space 9}65  {c |}{col 14}{res}{space 2} 1.239884{col 26}{space 2} .0670352{col 37}{space 1}   18.50{col 46}{space 3}0.000{col 54}{space 4} 1.108233{col 67}{space 3} 1.371535
+{txt}{space 9}66  {c |}{col 14}{res}{space 2} 1.251511{col 26}{space 2} .0690211{col 37}{space 1}   18.13{col 46}{space 3}0.000{col 54}{space 4}  1.11596{col 67}{space 3} 1.387062
+{txt}{space 9}67  {c |}{col 14}{res}{space 2} 1.263138{col 26}{space 2} .0710135{col 37}{space 1}   17.79{col 46}{space 3}0.000{col 54}{space 4} 1.123674{col 67}{space 3} 1.402602
+{txt}{space 9}68  {c |}{col 14}{res}{space 2} 1.274765{col 26}{space 2} .0730119{col 37}{space 1}   17.46{col 46}{space 3}0.000{col 54}{space 4} 1.131377{col 67}{space 3} 1.418154
+{txt}{space 9}69  {c |}{col 14}{res}{space 2} 1.286393{col 26}{space 2} .0750159{col 37}{space 1}   17.15{col 46}{space 3}0.000{col 54}{space 4} 1.139069{col 67}{space 3} 1.433717
+{txt}{space 9}70  {c |}{col 14}{res}{space 2}  1.29802{col 26}{space 2} .0770248{col 37}{space 1}   16.85{col 46}{space 3}0.000{col 54}{space 4}  1.14675{col 67}{space 3} 1.449289
+{txt}{space 9}71  {c |}{col 14}{res}{space 2} 1.309647{col 26}{space 2} .0790385{col 37}{space 1}   16.57{col 46}{space 3}0.000{col 54}{space 4} 1.154423{col 67}{space 3} 1.464871
+{txt}{space 9}72  {c |}{col 14}{res}{space 2} 1.321274{col 26}{space 2} .0810565{col 37}{space 1}   16.30{col 46}{space 3}0.000{col 54}{space 4} 1.162087{col 67}{space 3} 1.480461
+{txt}{space 9}73  {c |}{col 14}{res}{space 2} 1.332901{col 26}{space 2} .0830785{col 37}{space 1}   16.04{col 46}{space 3}0.000{col 54}{space 4} 1.169743{col 67}{space 3}  1.49606
+{txt}{space 9}74  {c |}{col 14}{res}{space 2} 1.344528{col 26}{space 2} .0851043{col 37}{space 1}   15.80{col 46}{space 3}0.000{col 54}{space 4} 1.177392{col 67}{space 3} 1.511665
+{txt}{space 9}75  {c |}{col 14}{res}{space 2} 1.356155{col 26}{space 2} .0871335{col 37}{space 1}   15.56{col 46}{space 3}0.000{col 54}{space 4} 1.185033{col 67}{space 3} 1.527277
+{txt}{space 9}76  {c |}{col 14}{res}{space 2} 1.367783{col 26}{space 2} .0891659{col 37}{space 1}   15.34{col 46}{space 3}0.000{col 54}{space 4} 1.192669{col 67}{space 3} 1.542896
+{txt}{space 9}77  {c |}{col 14}{res}{space 2}  1.37941{col 26}{space 2} .0912014{col 37}{space 1}   15.12{col 46}{space 3}0.000{col 54}{space 4} 1.200299{col 67}{space 3} 1.558521
+{txt}{space 9}78  {c |}{col 14}{res}{space 2} 1.391037{col 26}{space 2} .0932397{col 37}{space 1}   14.92{col 46}{space 3}0.000{col 54}{space 4} 1.207923{col 67}{space 3} 1.574151
+{txt}{space 9}79  {c |}{col 14}{res}{space 2} 1.402664{col 26}{space 2} .0952806{col 37}{space 1}   14.72{col 46}{space 3}0.000{col 54}{space 4} 1.215542{col 67}{space 3} 1.589786
+{txt}{space 9}80  {c |}{col 14}{res}{space 2} 1.414291{col 26}{space 2}  .097324{col 37}{space 1}   14.53{col 46}{space 3}0.000{col 54}{space 4} 1.223156{col 67}{space 3} 1.605426
+{txt}{space 9}81  {c |}{col 14}{res}{space 2} 1.425918{col 26}{space 2} .0993698{col 37}{space 1}   14.35{col 46}{space 3}0.000{col 54}{space 4} 1.230765{col 67}{space 3} 1.621071
+{txt}{space 9}82  {c |}{col 14}{res}{space 2} 1.437545{col 26}{space 2} .1014177{col 37}{space 1}   14.17{col 46}{space 3}0.000{col 54}{space 4} 1.238371{col 67}{space 3}  1.63672
+{txt}{space 9}83  {c |}{col 14}{res}{space 2} 1.449173{col 26}{space 2} .1034676{col 37}{space 1}   14.01{col 46}{space 3}0.000{col 54}{space 4} 1.245972{col 67}{space 3} 1.652373
+{txt}{space 9}84  {c |}{col 14}{res}{space 2}   1.4608{col 26}{space 2} .1055195{col 37}{space 1}   13.84{col 46}{space 3}0.000{col 54}{space 4} 1.253569{col 67}{space 3}  1.66803
+{txt}{space 9}85  {c |}{col 14}{res}{space 2} 1.472427{col 26}{space 2} .1075732{col 37}{space 1}   13.69{col 46}{space 3}0.000{col 54}{space 4} 1.261163{col 67}{space 3}  1.68369
+{txt}{space 9}86  {c |}{col 14}{res}{space 2} 1.484054{col 26}{space 2} .1096287{col 37}{space 1}   13.54{col 46}{space 3}0.000{col 54}{space 4} 1.268754{col 67}{space 3} 1.699354
+{txt}{space 9}87  {c |}{col 14}{res}{space 2} 1.495681{col 26}{space 2} .1116857{col 37}{space 1}   13.39{col 46}{space 3}0.000{col 54}{space 4} 1.276341{col 67}{space 3} 1.715021
+{txt}{space 9}88  {c |}{col 14}{res}{space 2} 1.507308{col 26}{space 2} .1137443{col 37}{space 1}   13.25{col 46}{space 3}0.000{col 54}{space 4} 1.283925{col 67}{space 3} 1.730691
+{txt}{space 9}89  {c |}{col 14}{res}{space 2} 1.518935{col 26}{space 2} .1158043{col 37}{space 1}   13.12{col 46}{space 3}0.000{col 54}{space 4} 1.291507{col 67}{space 3} 1.746364
+{txt}{space 9}90  {c |}{col 14}{res}{space 2} 1.530562{col 26}{space 2} .1178657{col 37}{space 1}   12.99{col 46}{space 3}0.000{col 54}{space 4} 1.299085{col 67}{space 3}  1.76204
+{txt}{space 9}91  {c |}{col 14}{res}{space 2}  1.54219{col 26}{space 2} .1199285{col 37}{space 1}   12.86{col 46}{space 3}0.000{col 54}{space 4} 1.306661{col 67}{space 3} 1.777718
+{txt}{space 9}92  {c |}{col 14}{res}{space 2} 1.553817{col 26}{space 2} .1219925{col 37}{space 1}   12.74{col 46}{space 3}0.000{col 54}{space 4} 1.314235{col 67}{space 3} 1.793399
+{txt}{space 9}93  {c |}{col 14}{res}{space 2} 1.565444{col 26}{space 2} .1240576{col 37}{space 1}   12.62{col 46}{space 3}0.000{col 54}{space 4} 1.321806{col 67}{space 3} 1.809081
+{txt}{space 9}94  {c |}{col 14}{res}{space 2} 1.577071{col 26}{space 2} .1261239{col 37}{space 1}   12.50{col 46}{space 3}0.000{col 54}{space 4} 1.329376{col 67}{space 3} 1.824766
+{txt}{space 9}95  {c |}{col 14}{res}{space 2} 1.588698{col 26}{space 2} .1281912{col 37}{space 1}   12.39{col 46}{space 3}0.000{col 54}{space 4} 1.336943{col 67}{space 3} 1.840454
+{txt}{space 9}96  {c |}{col 14}{res}{space 2} 1.600325{col 26}{space 2} .1302595{col 37}{space 1}   12.29{col 46}{space 3}0.000{col 54}{space 4} 1.344508{col 67}{space 3} 1.856143
+{txt}{space 9}97  {c |}{col 14}{res}{space 2} 1.611953{col 26}{space 2} .1323288{col 37}{space 1}   12.18{col 46}{space 3}0.000{col 54}{space 4} 1.352071{col 67}{space 3} 1.871834
+{txt}{space 9}98  {c |}{col 14}{res}{space 2}  1.62358{col 26}{space 2} .1343991{col 37}{space 1}   12.08{col 46}{space 3}0.000{col 54}{space 4} 1.359632{col 67}{space 3} 1.887527
+{txt}{space 9}99  {c |}{col 14}{res}{space 2} 1.635207{col 26}{space 2} .1364702{col 37}{space 1}   11.98{col 46}{space 3}0.000{col 54}{space 4} 1.367192{col 67}{space 3} 1.903221
+{txt}{space 8}100  {c |}{col 14}{res}{space 2} 1.646834{col 26}{space 2} .1385421{col 37}{space 1}   11.89{col 46}{space 3}0.000{col 54}{space 4}  1.37475{col 67}{space 3} 1.918918
+{txt}{space 8}101  {c |}{col 14}{res}{space 2} 1.658461{col 26}{space 2} .1406149{col 37}{space 1}   11.79{col 46}{space 3}0.000{col 54}{space 4} 1.382307{col 67}{space 3} 1.934615
+{txt}{space 8}102  {c |}{col 14}{res}{space 2} 1.670088{col 26}{space 2} .1426885{col 37}{space 1}   11.70{col 46}{space 3}0.000{col 54}{space 4} 1.389861{col 67}{space 3} 1.950315
+{txt}{space 8}103  {c |}{col 14}{res}{space 2} 1.681715{col 26}{space 2} .1447627{col 37}{space 1}   11.62{col 46}{space 3}0.000{col 54}{space 4} 1.397415{col 67}{space 3} 1.966016
+{txt}{space 8}104  {c |}{col 14}{res}{space 2} 1.693342{col 26}{space 2} .1468377{col 37}{space 1}   11.53{col 46}{space 3}0.000{col 54}{space 4} 1.404967{col 67}{space 3} 1.981718
+{txt}{space 8}105  {c |}{col 14}{res}{space 2}  1.70497{col 26}{space 2} .1489133{col 37}{space 1}   11.45{col 46}{space 3}0.000{col 54}{space 4} 1.412518{col 67}{space 3} 1.997421
+{txt}{space 8}106  {c |}{col 14}{res}{space 2} 1.716597{col 26}{space 2} .1509896{col 37}{space 1}   11.37{col 46}{space 3}0.000{col 54}{space 4} 1.420067{col 67}{space 3} 2.013126
+{txt}{space 8}107  {c |}{col 14}{res}{space 2} 1.728224{col 26}{space 2} .1530666{col 37}{space 1}   11.29{col 46}{space 3}0.000{col 54}{space 4} 1.427616{col 67}{space 3} 2.028832
+{txt}{space 8}108  {c |}{col 14}{res}{space 2} 1.739851{col 26}{space 2} .1551441{col 37}{space 1}   11.21{col 46}{space 3}0.000{col 54}{space 4} 1.435163{col 67}{space 3} 2.044539
+{txt}{space 8}109  {c |}{col 14}{res}{space 2} 1.751478{col 26}{space 2} .1572222{col 37}{space 1}   11.14{col 46}{space 3}0.000{col 54}{space 4} 1.442709{col 67}{space 3} 2.060248
+{txt}{space 8}110  {c |}{col 14}{res}{space 2} 1.763105{col 26}{space 2} .1593008{col 37}{space 1}   11.07{col 46}{space 3}0.000{col 54}{space 4} 1.450253{col 67}{space 3} 2.075957
+{txt}{space 8}111  {c |}{col 14}{res}{space 2} 1.774732{col 26}{space 2}   .16138{col 37}{space 1}   11.00{col 46}{space 3}0.000{col 54}{space 4} 1.457797{col 67}{space 3} 2.091667
+{txt}{space 8}112  {c |}{col 14}{res}{space 2}  1.78636{col 26}{space 2} .1634596{col 37}{space 1}   10.93{col 46}{space 3}0.000{col 54}{space 4}  1.46534{col 67}{space 3} 2.107379
+{txt}{space 8}113  {c |}{col 14}{res}{space 2} 1.797987{col 26}{space 2} .1655398{col 37}{space 1}   10.86{col 46}{space 3}0.000{col 54}{space 4} 1.472882{col 67}{space 3} 2.123091
+{txt}{space 8}114  {c |}{col 14}{res}{space 2} 1.809614{col 26}{space 2} .1676204{col 37}{space 1}   10.80{col 46}{space 3}0.000{col 54}{space 4} 1.480423{col 67}{space 3} 2.138805
+{txt}{space 8}115  {c |}{col 14}{res}{space 2} 1.821241{col 26}{space 2} .1697015{col 37}{space 1}   10.73{col 46}{space 3}0.000{col 54}{space 4} 1.487963{col 67}{space 3} 2.154519
+{txt}{space 8}116  {c |}{col 14}{res}{space 2} 1.832868{col 26}{space 2} .1717831{col 37}{space 1}   10.67{col 46}{space 3}0.000{col 54}{space 4} 1.495502{col 67}{space 3} 2.170234
+{txt}{space 8}117  {c |}{col 14}{res}{space 2} 1.844495{col 26}{space 2}  .173865{col 37}{space 1}   10.61{col 46}{space 3}0.000{col 54}{space 4} 1.503041{col 67}{space 3}  2.18595
+{txt}{space 8}118  {c |}{col 14}{res}{space 2} 1.856122{col 26}{space 2} .1759474{col 37}{space 1}   10.55{col 46}{space 3}0.000{col 54}{space 4} 1.510578{col 67}{space 3} 2.201666
+{txt}{space 8}119  {c |}{col 14}{res}{space 2} 1.867749{col 26}{space 2} .1780301{col 37}{space 1}   10.49{col 46}{space 3}0.000{col 54}{space 4} 1.518115{col 67}{space 3} 2.217384
+{txt}{space 8}120  {c |}{col 14}{res}{space 2} 1.879377{col 26}{space 2} .1801132{col 37}{space 1}   10.43{col 46}{space 3}0.000{col 54}{space 4} 1.525651{col 67}{space 3} 2.233102
+{txt}{space 8}121  {c |}{col 14}{res}{space 2} 1.891004{col 26}{space 2} .1821967{col 37}{space 1}   10.38{col 46}{space 3}0.000{col 54}{space 4} 1.533187{col 67}{space 3} 2.248821
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. marginsplot
+{res}
+{text}{p 0 0 2}Variables that uniquely identify margins: {bf:tenure}{p_end}
+{res}{txt}
+{com}. graph export mp2_tenure.png
+{txt}{p 0 4 2}
+file {bf}
+/Users/kongqingluo/Desktop/EEE/Empirical Exercise/mp2_tenure.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. * moreover, check relationship by fitting lines to scatter plot:
+. twoway scatter hrbens exper || qfit hrbens exper
+{res}{txt}
+{com}. graph export sc_exper.png
+{txt}{p 0 4 2}
+file {bf}
+/Users/kongqingluo/Desktop/EEE/Empirical Exercise/sc_exper.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. twoway scatter hrbens tenure || qfit hrbens tenure
+{res}{txt}
+{com}. graph export sc_tenure.png
+{txt}{p 0 4 2}
+file {bf}
+/Users/kongqingluo/Desktop/EEE/Empirical Exercise/sc_tenure.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. /* From the graph, there's indeed non-linear relationship observed,
+> therefore we can add square terms.*/
+. 
+. * == (9) == estimated ME, subsample h>0, others at means *
+. sum tenure
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}tenure {c |}{res}        616    7.751623    7.775509         .5         25
+{txt}
+{com}. display 7.751623^2
+{res}60.087659
+{txt}
+{com}. sum exper
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}exper {c |}{res}        616    18.61688    12.32906          0         60
+{txt}
+{com}. display 18.61688^2
+{res}346.58822
+{txt}
+{com}. margins, dydx(tenure) predict(e(0,.)) atmeans ///
+> at(stenure==60.087659 sexper==346.58822)
+{res}
+{txt}{col 1}Conditional marginal effects{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:616}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:E(hrbens|hrbens>0), predict(e(0,.))}{p_end}
+{p2col:dy/dx wrt:}{res:tenure}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:exper} = {res:{ralign 8:18.61688}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:age} = {res:{ralign 8:37.65422}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:educ} = {res:{ralign 8:12.51461}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:tenure} = {res:{ralign 8:7.751623}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:married} = {res:{ralign 8:.6866883}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:male} = {res:{ralign 8:.6412338}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:white} = {res:{ralign 8:.9058442}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:nrtheast} = {res:{ralign 8:.1964286}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:nrthcen} = {res:{ralign 8:.3035714}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:south} = {res:{ralign 8:.3474026}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:union} = {res:{ralign 8:.3181818}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:sexper} = {res:{ralign 8:346.5882}}
+{lalign 4:}{space 0}{lalign 8:stenure} = {res:{ralign 8:60.08766}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}tenure {c |}{col 14}{res}{space 2} .0508968{col 26}{space 2} .0095702{col 37}{space 1}    5.32{col 46}{space 3}0.000{col 54}{space 4} .0321396{col 67}{space 3}  .069654
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. * == (10) == exogenous test on educ *
+. reg educ married male white nrtheast nrthcen south union
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       616
+{txt}{hline 13}{c +}{hline 34}   F(7, 608)       = {res}     7.95
+{txt}       Model {c |} {res} 385.098307         7  55.0140438   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  4208.7702       608  6.92231941   {txt}R-squared       ={res}    0.0838
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0733
+{txt}       Total {c |} {res} 4593.86851       615  7.46970489   {txt}Root MSE        =   {res}  2.631
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        educ{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}married {c |}{col 14}{res}{space 2}-.1150691{col 26}{space 2} .2426367{col 37}{space 1}   -0.47{col 46}{space 3}0.635{col 54}{space 4}-.5915768{col 67}{space 3} .3614387
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .2225942{col 26}{space 2} .2358462{col 37}{space 1}    0.94{col 46}{space 3}0.346{col 54}{space 4}-.2405779{col 67}{space 3} .6857662
+{txt}{space 7}white {c |}{col 14}{res}{space 2} .9123726{col 26}{space 2} .3671197{col 37}{space 1}    2.49{col 46}{space 3}0.013{col 54}{space 4} .1913959{col 67}{space 3} 1.633349
+{txt}{space 4}nrtheast {c |}{col 14}{res}{space 2}-.5565349{col 26}{space 2} .3630503{col 37}{space 1}   -1.53{col 46}{space 3}0.126{col 54}{space 4} -1.26952{col 67}{space 3} .1564501
+{txt}{space 5}nrthcen {c |}{col 14}{res}{space 2}-.7633233{col 26}{space 2} .3341126{col 37}{space 1}   -2.28{col 46}{space 3}0.023{col 54}{space 4}-1.419478{col 67}{space 3}-.1071685
+{txt}{space 7}south {c |}{col 14}{res}{space 2}-1.441586{col 26}{space 2} .3278692{col 37}{space 1}   -4.40{col 46}{space 3}0.000{col 54}{space 4}-2.085479{col 67}{space 3}-.7976919
+{txt}{space 7}union {c |}{col 14}{res}{space 2}-1.198818{col 26}{space 2} .2349272{col 37}{space 1}   -5.10{col 46}{space 3}0.000{col 54}{space 4}-1.660185{col 67}{space 3}-.7374503
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 12.84772{col 26}{space 2} .4612359{col 37}{space 1}   27.85{col 46}{space 3}0.000{col 54}{space 4} 11.94191{col 67}{space 3} 13.75353
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict res_TS, res
+{txt}
+{com}. tobit hrbens exper age educ tenure married male white union res_TS, ll
+{res}{txt}
+Refining starting values:
+
+Grid node 0:{space 3}log likelihood = {res:-522.78331}
+
+Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-522.78331}  
+Iteration 1:{space 3}log likelihood = {res:-520.28956}  
+Iteration 2:{space 3}log likelihood = {res:-520.27358}  
+Iteration 3:{space 3}log likelihood = {res:-520.27357}  
+{res}
+{txt}{col 1}Tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:616}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:575}
+{txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:41}
+{txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
+
+{txt}{col 53}{lalign 17:LR chi2({res:9})}{col 70} = {res}{ralign 6:282.64}
+{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-520.27357}{txt}{col 53}{lalign 17:Pseudo R2}{col 70} = {res}{ralign 6:0.2136}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       hrbens{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}exper {c |}{col 15}{res}{space 2} .0039143{col 27}{space 2} .0046576{col 38}{space 1}    0.84{col 47}{space 3}0.401{col 55}{space 4}-.0052327{col 68}{space 3} .0130614
+{txt}{space 10}age {c |}{col 15}{res}{space 2}  -.00242{col 27}{space 2} .0044335{col 38}{space 1}   -0.55{col 47}{space 3}0.585{col 55}{space 4}-.0111269{col 68}{space 3} .0062869
+{txt}{space 9}educ {c |}{col 15}{res}{space 2} .0859156{col 27}{space 2} .0455601{col 38}{space 1}    1.89{col 47}{space 3}0.060{col 55}{space 4} -.003559{col 68}{space 3} .1753903
+{txt}{space 7}tenure {c |}{col 15}{res}{space 2} .0283968{col 27}{space 2} .0037152{col 38}{space 1}    7.64{col 47}{space 3}0.000{col 55}{space 4} .0211007{col 68}{space 3} .0356929
+{txt}{space 6}married {c |}{col 15}{res}{space 2} .1025729{col 27}{space 2} .0545415{col 38}{space 1}    1.88{col 47}{space 3}0.060{col 55}{space 4}-.0045401{col 68}{space 3}  .209686
+{txt}{space 9}male {c |}{col 15}{res}{space 2} .2526877{col 27}{space 2} .0563626{col 38}{space 1}    4.48{col 47}{space 3}0.000{col 55}{space 4} .1419984{col 68}{space 3} .3633771
+{txt}{space 8}white {c |}{col 15}{res}{space 2}  .098704{col 27}{space 2} .0920271{col 38}{space 1}    1.07{col 47}{space 3}0.284{col 55}{space 4}-.0820262{col 68}{space 3} .2794342
+{txt}{space 8}union {c |}{col 15}{res}{space 2} .4007038{col 27}{space 2} .0720081{col 38}{space 1}    5.56{col 47}{space 3}0.000{col 55}{space 4} .2592887{col 68}{space 3}  .542119
+{txt}{space 7}res_TS {c |}{col 15}{res}{space 2} .0009459{col 27}{space 2} .0464573{col 38}{space 1}    0.02{col 47}{space 3}0.984{col 55}{space 4}-.0902906{col 68}{space 3} .0921824
+{txt}{space 8}_cons {c |}{col 15}{res}{space 2}-.8374651{col 27}{space 2} .5554587{col 38}{space 1}   -1.51{col 47}{space 3}0.132{col 55}{space 4}-1.928319{col 68}{space 3}  .253389
+{txt}{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}var(e.hrbens){c |}{col 15}{res}{space 2} .3088503{col 27}{space 2}  .018447{col 55}{space 4} .2746666{col 68}{space 3} .3472884
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kongqingluo/Desktop/EEE/Empirical Exercise/Exercise_2.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}17 Dec 2021, 20:40:10
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

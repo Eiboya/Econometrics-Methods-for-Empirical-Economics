@@ -1,0 +1,671 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kongqingluo/Desktop/EEE/Empirical Exercise/Exercise_1.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Dec 2021, 20:36:11
+
+{com}. do "/var/folders/8q/n3s905xx58v1wh4kmsps55780000gp/T//SD38974.000000"
+{txt}
+{com}. clear all
+{res}{txt}
+{com}. 
+. * =================================== *
+. *        Empirical Exercise.          *
+. *      Zhihan Zhang & Jingwan LUO     *
+. * =================================== *
+. 
+. ***************************** Exercise 1 ***************************************
+. 
+. 
+. * == (1) == *
+. use http://www.stata.com/data/jwooldridge/eacsap/bwght
+{txt}
+{com}. 
+. /* in case the link does not work or change locations, use the following
+> and change your path:
+> cd "/Users/kongqingluo/Desktop/EEE/Empirical Exercise"
+> use bwght.dta */
+. 
+. * == (2) == *
+. gen smokes = 0
+{txt}
+{com}. replace smokes = 1 if cigs != 0
+{txt}(212 real changes made)
+
+{com}. 
+. * == (3) == *
+. 
+. * ===== (b) ===== descriptive stats ===== *
+. summarize
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}faminc {c |}{res}      1,388    29.02666    18.73928         .5         65
+{txt}{space 6}cigtax {c |}{res}      1,388    19.55295    7.795598          2         38
+{txt}{space 4}cigprice {c |}{res}      1,388     130.559    10.24448      103.8      152.5
+{txt}{space 7}bwght {c |}{res}      1,388    118.6996    20.35396         23        271
+{txt}{space 4}fatheduc {c |}{res}      1,192    13.18624    2.745985          1         18
+{txt}{hline 13}{c +}{hline 57}
+{space 4}motheduc {c |}{res}      1,387    12.93583    2.376728          2         18
+{txt}{space 6}parity {c |}{res}      1,388    1.632565    .8940273          1          6
+{txt}{space 8}male {c |}{res}      1,388    .5208934    .4997433          0          1
+{txt}{space 7}white {c |}{res}      1,388    .7845821    .4112601          0          1
+{txt}{space 8}cigs {c |}{res}      1,388    2.087176    5.972688          0         50
+{txt}{hline 13}{c +}{hline 57}
+{space 6}lbwght {c |}{res}      1,388    4.760031    .1906622   3.135494   5.602119
+{txt}{space 4}bwghtlbs {c |}{res}      1,388    7.418723    1.272123     1.4375    16.9375
+{txt}{space 7}packs {c |}{res}      1,388    .1043588    .2986344          0        2.5
+{txt}{space 5}lfaminc {c |}{res}      1,388    3.071271    .9180645  -.6931472   4.174387
+{txt}{space 6}smokes {c |}{res}      1,388    .1527378    .3598642          0          1
+{txt}
+{com}. estpost summarize faminc cigtax cigprice bwght fatheduc motheduc parity ///
+> male white cigs lbwght bwghtlbs packs lfaminc
+
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:e(count)}{space 1}{space 1}{ralign 9:e(sum_w)}{space 1}{space 1}{ralign 9:e(mean)}{space 1}{space 1}{ralign 9:e(Var)}{space 1}{space 1}{ralign 9:e(sd)}{space 1}{space 1}{ralign 9:e(min)}{space 1}{space 1}{ralign 9:e(max)}{space 1}{space 1}{ralign 9:e(sum)}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:faminc}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 29.02666}}}{space 1}{space 1}{ralign 9:{res:{sf: 351.1608}}}{space 1}{space 1}{ralign 9:{res:{sf: 18.73928}}}{space 1}{space 1}{ralign 9:{res:{sf:       .5}}}{space 1}{space 1}{ralign 9:{res:{sf:       65}}}{space 1}{space 1}{ralign 9:{res:{sf:    40289}}}{space 1}
+{space 0}{space 0}{ralign 12:cigtax}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 19.55295}}}{space 1}{space 1}{ralign 9:{res:{sf: 60.77135}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.795598}}}{space 1}{space 1}{ralign 9:{res:{sf:        2}}}{space 1}{space 1}{ralign 9:{res:{sf:       38}}}{space 1}{space 1}{ralign 9:{res:{sf:  27139.5}}}{space 1}
+{space 0}{space 0}{ralign 12:cigprice}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:  130.559}}}{space 1}{space 1}{ralign 9:{res:{sf: 104.9495}}}{space 1}{space 1}{ralign 9:{res:{sf: 10.24448}}}{space 1}{space 1}{ralign 9:{res:{sf:    103.8}}}{space 1}{space 1}{ralign 9:{res:{sf:    152.5}}}{space 1}{space 1}{ralign 9:{res:{sf: 181215.9}}}{space 1}
+{space 0}{space 0}{ralign 12:bwght}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 118.6996}}}{space 1}{space 1}{ralign 9:{res:{sf: 414.2839}}}{space 1}{space 1}{ralign 9:{res:{sf: 20.35396}}}{space 1}{space 1}{ralign 9:{res:{sf:       23}}}{space 1}{space 1}{ralign 9:{res:{sf:      271}}}{space 1}{space 1}{ralign 9:{res:{sf:   164755}}}{space 1}
+{space 0}{space 0}{ralign 12:fatheduc}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1192}}}{space 1}{space 1}{ralign 9:{res:{sf:     1192}}}{space 1}{space 1}{ralign 9:{res:{sf: 13.18624}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.540432}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.745985}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:       18}}}{space 1}{space 1}{ralign 9:{res:{sf:    15718}}}{space 1}
+{space 0}{space 0}{ralign 12:motheduc}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1387}}}{space 1}{space 1}{ralign 9:{res:{sf:     1387}}}{space 1}{space 1}{ralign 9:{res:{sf: 12.93583}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.648838}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.376728}}}{space 1}{space 1}{ralign 9:{res:{sf:        2}}}{space 1}{space 1}{ralign 9:{res:{sf:       18}}}{space 1}{space 1}{ralign 9:{res:{sf:    17942}}}{space 1}
+{space 0}{space 0}{ralign 12:parity}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.632565}}}{space 1}{space 1}{ralign 9:{res:{sf: .7992848}}}{space 1}{space 1}{ralign 9:{res:{sf: .8940273}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        6}}}{space 1}{space 1}{ralign 9:{res:{sf:     2266}}}{space 1}
+{space 0}{space 0}{ralign 12:male}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: .5208934}}}{space 1}{space 1}{ralign 9:{res:{sf: .2497434}}}{space 1}{space 1}{ralign 9:{res:{sf: .4997433}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:      723}}}{space 1}
+{space 0}{space 0}{ralign 12:white}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: .7845821}}}{space 1}{space 1}{ralign 9:{res:{sf: .1691349}}}{space 1}{space 1}{ralign 9:{res:{sf: .4112601}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:     1089}}}{space 1}
+{space 0}{space 0}{ralign 12:cigs}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.087176}}}{space 1}{space 1}{ralign 9:{res:{sf:   35.673}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.972688}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:       50}}}{space 1}{space 1}{ralign 9:{res:{sf:     2897}}}{space 1}
+{space 0}{space 0}{ralign 12:lbwght}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 4.760031}}}{space 1}{space 1}{ralign 9:{res:{sf: .0363521}}}{space 1}{space 1}{ralign 9:{res:{sf: .1906622}}}{space 1}{space 1}{ralign 9:{res:{sf: 3.135494}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.602119}}}{space 1}{space 1}{ralign 9:{res:{sf: 6606.923}}}{space 1}
+{space 0}{space 0}{ralign 12:bwghtlbs}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 7.418723}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.618296}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.272123}}}{space 1}{space 1}{ralign 9:{res:{sf:   1.4375}}}{space 1}{space 1}{ralign 9:{res:{sf:  16.9375}}}{space 1}{space 1}{ralign 9:{res:{sf: 10297.19}}}{space 1}
+{space 0}{space 0}{ralign 12:packs}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: .1043588}}}{space 1}{space 1}{ralign 9:{res:{sf: .0891825}}}{space 1}{space 1}{ralign 9:{res:{sf: .2986344}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:      2.5}}}{space 1}{space 1}{ralign 9:{res:{sf:   144.85}}}{space 1}
+{space 0}{space 0}{ralign 12:lfaminc}{space 1}{c |}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf:     1388}}}{space 1}{space 1}{ralign 9:{res:{sf: 3.071271}}}{space 1}{space 1}{ralign 9:{res:{sf: .8428425}}}{space 1}{space 1}{ralign 9:{res:{sf: .9180645}}}{space 1}{space 1}{ralign 9:{res:{sf:-.6931472}}}{space 1}{space 1}{ralign 9:{res:{sf: 4.174387}}}{space 1}{space 1}{ralign 9:{res:{sf: 4262.924}}}{space 1}
+
+{com}. esttab . using "Table_1.tex", cells("mean sd min max count") noobs
+{res}{txt}(output written to {browse  `"Table_1.tex"'})
+
+{com}. 
+. * ===== (c) ===== # of smoking woman ===== *
+. count if smokes == 1
+  {res}212
+{txt}
+{com}. * # of smoking woman = 212 *
+. 
+. * ===== (d) ===== # of white smoking woman ===== *
+. count if smokes == 1 & white == 1
+  {res}165
+{txt}
+{com}. * # of white smoking woman = 165 *
+. 
+. /* ===== (e) ===== # of smoking women with 
+> family income above the sample average ===== */
+. egen meanfaminc=mean(faminc)
+{txt}
+{com}. count if smokes == 1 & faminc > meanfaminc
+  {res}53
+{txt}
+{com}. /* # of smoking women with 
+> family income above the sample average = 53 */
+. 
+. /* ===== (f) ===== # of smoking women with 
+> family income above the sample median ===== */
+. egen medianfaminc=median(faminc)
+{txt}
+{com}. count if smokes == 1 & faminc > medianfaminc
+  {res}53
+{txt}
+{com}. /* # of smoking women with 
+> family income above the sample average = 53 */
+. 
+. /* ===== (g) ===== # of observations with at least one 
+> missing value among smokes, motheduc, white, lfaminc ===== */
+. count if smokes==.| motheduc==.| white==.| lfaminc==.
+  {res}1
+{txt}
+{com}. 
+. * == (4) == LPM *
+. * ===== (a) ===== baseline LPM, robust se used *
+. reg smokes motheduc white lfaminc
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,387
+{txt}{hline 13}{c +}{hline 34}   F(3, 1383)      = {res}    31.05
+{txt}       Model {c |} {res} 11.3314741         3  3.77715803   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 168.264777     1,383  .121666505   {txt}R-squared       ={res}    0.0631
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0611
+{txt}       Total {c |} {res} 179.596251     1,386  .129578825   {txt}Root MSE        =   {res} .34881
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      smokes{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.0293207{col 26}{space 2} .0043342{col 37}{space 1}   -6.76{col 46}{space 3}0.000{col 54}{space 4}-.0378229{col 67}{space 3}-.0208184
+{txt}{space 7}white {c |}{col 14}{res}{space 2}  .048364{col 26}{space 2} .0243837{col 37}{space 1}    1.98{col 46}{space 3}0.048{col 54}{space 4} .0005309{col 67}{space 3}  .096197
+{txt}{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0427425{col 26}{space 2} .0119231{col 37}{space 1}   -3.58{col 46}{space 3}0.000{col 54}{space 4}-.0661318{col 67}{space 3}-.0193532
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6255033{col 26}{space 2} .0537477{col 37}{space 1}   11.64{col 46}{space 3}0.000{col 54}{space 4} .5200675{col 67}{space 3}  .730939
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo lpm1
+{txt}
+{com}. reg smokes motheduc white lfaminc, robust
+
+{txt}Linear regression                               Number of obs     = {res}     1,387
+                                                {txt}F(3, 1383)        =  {res}    31.11
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0631
+                                                {txt}Root MSE          =    {res} .34881
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      smokes{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.0293207{col 26}{space 2} .0041666{col 37}{space 1}   -7.04{col 46}{space 3}0.000{col 54}{space 4}-.0374942{col 67}{space 3}-.0211471
+{txt}{space 7}white {c |}{col 14}{res}{space 2}  .048364{col 26}{space 2}   .02528{col 37}{space 1}    1.91{col 46}{space 3}0.056{col 54}{space 4}-.0012273{col 67}{space 3} .0979552
+{txt}{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0427425{col 26}{space 2} .0132724{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.0687787{col 67}{space 3}-.0167062
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6255033{col 26}{space 2} .0564588{col 37}{space 1}   11.08{col 46}{space 3}0.000{col 54}{space 4} .5147492{col 67}{space 3} .7362573
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. eststo lpm2
+{txt}
+{com}. esttab lpm1 lpm2 using "Table_2.tex", se ar2 replace
+{res}{txt}{p 0 4 2}
+(file {bf}
+Table_2.tex{rm}
+not found)
+{p_end}
+(output written to {browse  `"Table_2.tex"'})
+
+{com}. 
+. * ===== (b) motheduc and lfaminc are sig at 5% level when r.se. used. *
+. 
+. 
+. * ===== (d) pp proportion outside the unit circle ===== *
+. qui reg smokes motheduc white lfaminc, robust
+{txt}
+{com}. predict psmokes_LPM
+{txt}(option {bf:xb} assumed; fitted values)
+(1 missing value generated)
+
+{com}. gen pp_out = .
+{txt}(1,388 missing values generated)
+
+{com}. replace pp_out = 1 if psmokes_LPM>1 | psmokes_LPM<0
+{txt}(64 real changes made)
+
+{com}. sum psmokes_LPM pp_out
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 1}psmokes_LPM {c |}{res}      1,387    .1528479    .0904194  -.0806922    .615532
+{txt}{space 6}pp_out {c |}{res}         64           1           0          1          1
+{txt}
+{com}. display 64/1387
+{res}.04614275
+{txt}
+{com}. * proportion = .04614275 *
+. 
+. * == (5) == Logit *
+. 
+. * ===== (a) baseline logit ===== *
+. * have to specify white as a bi-var.
+. logit smokes motheduc i.white lfaminc
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-593.10529}  
+Iteration 1:{space 3}log likelihood = {res: -551.1645}  
+Iteration 2:{space 3}log likelihood = {res:-548.74295}  
+Iteration 3:{space 3}log likelihood = {res:-548.73367}  
+Iteration 4:{space 3}log likelihood = {res:-548.73367}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:1,387}
+{txt}{col 57}{lalign 13:LR chi2({res:3})}{col 70} = {res}{ralign 6:88.74}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-548.73367}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0748}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      smokes{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.2518731{col 26}{space 2} .0372045{col 37}{space 1}   -6.77{col 46}{space 3}0.000{col 54}{space 4}-.3247925{col 67}{space 3}-.1789536
+{txt}{space 5}1.white {c |}{col 14}{res}{space 2} .3438842{col 26}{space 2} .2002178{col 37}{space 1}    1.72{col 46}{space 3}0.086{col 54}{space 4}-.0485355{col 67}{space 3} .7363038
+{txt}{space 5}lfaminc {c |}{col 14}{res}{space 2}-.2962299{col 26}{space 2} .0866347{col 37}{space 1}   -3.42{col 46}{space 3}0.001{col 54}{space 4}-.4660308{col 67}{space 3}-.1264289
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.012535{col 26}{space 2} .4474219{col 37}{space 1}    4.50{col 46}{space 3}0.000{col 54}{space 4} 1.135604{col 67}{space 3} 2.889466
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. eststo logitstandard
+{txt}
+{com}. esttab logitstandard using "Table_3.tex", se ar2 replace
+{res}{txt}{p 0 4 2}
+(file {bf}
+Table_3.tex{rm}
+not found)
+{p_end}
+(output written to {browse  `"Table_3.tex"'})
+
+{com}. 
+. * ===== (b) AME & MEM ===== *
+. 
+. * AME, motheduc:
+. margins, dydx(motheduc)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:motheduc}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.0303406{col 26}{space 2} .0043807{col 37}{space 1}   -6.93{col 46}{space 3}0.000{col 54}{space 4}-.0389266{col 67}{space 3}-.0217545
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * MEM, motheduc:
+. margins, dydx(motheduc) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:motheduc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.0288047{col 26}{space 2} .0040128{col 37}{space 1}   -7.18{col 46}{space 3}0.000{col 54}{space 4}-.0366697{col 67}{space 3}-.0209397
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * AME, white:
+. margins, dydx(white)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:1.white}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}1.white {c |}{col 14}{res}{space 2}  .039117{col 26}{space 2} .0214193{col 37}{space 1}    1.83{col 46}{space 3}0.068{col 54}{space 4} -.002864{col 67}{space 3} .0810981
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. * MEM, white:
+. margins, dydx(white) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:1.white}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}1.white {c |}{col 14}{res}{space 2} .0366196{col 26}{space 2}  .019809{col 37}{space 1}    1.85{col 46}{space 3}0.065{col 54}{space 4}-.0022054{col 67}{space 3} .0754445
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. * AME, lfaminc:
+. margins, dydx(lfaminc)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0356838{col 26}{space 2} .0103641{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4} -.055997{col 67}{space 3}-.0153706
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * MEM, lfaminc:
+. margins, dydx(lfaminc) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0338774{col 26}{space 2} .0098448{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-.0531728{col 67}{space 3} -.014582
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. * ===== (d) Proportions of correct predictions ===== *
+. * for LPM
+. qui reg smokes motheduc white lfaminc, robust
+{txt}
+{com}. predict psmokes1_LPM
+{txt}(option {bf:xb} assumed; fitted values)
+(1 missing value generated)
+
+{com}. generate smokes_LPM = (psmokes1_LPM>=0.5)
+{txt}
+{com}. count if smokes_LPM == smokes & smokes == 0
+  {res}1,174
+{txt}
+{com}. count if smokes == 0
+  {res}1,176
+{txt}
+{com}. count if smokes_LPM == smokes & smokes == 1
+  {res}0
+{txt}
+{com}. count if smokes == 1
+  {res}212
+{txt}
+{com}. 
+. * for Logit
+. qui logit smokes motheduc i.white lfaminc
+{txt}
+{com}. predict psmokes_logit
+{txt}(option {bf:pr} assumed; Pr(smokes))
+(1 missing value generated)
+
+{com}. generate smokes_logit = (psmokes_logit>=0.5)
+{txt}
+{com}. count if smokes_logit==smokes & smokes == 0
+  {res}1,166
+{txt}
+{com}. count if smokes == 0
+  {res}1,176
+{txt}
+{com}. count if smokes_logit==smokes & smokes == 1
+  {res}3
+{txt}
+{com}. count if smokes == 1
+  {res}212
+{txt}
+{com}. 
+. 
+. * ===== (f) estimated difference of expectation ===== *
+. margins, dydx(lfaminc) atmeans at(white = 0 motheduc = 16)
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:16}}
+{lalign 4:}{space 0}{lalign 8:white} = {res:{ralign 8:0}}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0142874{col 26}{space 2} .0047184{col 37}{space 1}   -3.03{col 46}{space 3}0.002{col 54}{space 4}-.0235352{col 67}{space 3}-.0050395
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, dydx(lfaminc) atmeans at(white = 0 motheduc = 12)
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12}}
+{lalign 4:}{space 0}{lalign 8:white} = {res:{ralign 8:0}}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0330342{col 26}{space 2} .0086962{col 37}{space 1}   -3.80{col 46}{space 3}0.000{col 54}{space 4}-.0500784{col 67}{space 3}  -.01599
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. display (-.0142874-(-.0330342))
+{res}.0187468
+{txt}
+{com}. * difference in expectation=.05757651
+. 
+. * ===== (h) exogeneity test ===== *
+. 
+. reg lfaminc motheduc fatheduc bwght male white lbwght cigs cigtax cigprice
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,191
+{txt}{hline 13}{c +}{hline 34}   F(9, 1181)      = {res}    47.55
+{txt}       Model {c |} {res} 161.887431         9  17.9874924   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 446.740207     1,181  .378272826   {txt}R-squared       ={res}    0.2660
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2604
+{txt}       Total {c |} {res} 608.627639     1,190  .511451797   {txt}Root MSE        =   {res} .61504
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     lfaminc{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2} .0682959{col 26}{space 2} .0097281{col 37}{space 1}    7.02{col 46}{space 3}0.000{col 54}{space 4} .0492096{col 67}{space 3} .0873823
+{txt}{space 4}fatheduc {c |}{col 14}{res}{space 2} .0585049{col 26}{space 2} .0085792{col 37}{space 1}    6.82{col 46}{space 3}0.000{col 54}{space 4} .0416726{col 67}{space 3} .0753372
+{txt}{space 7}bwght {c |}{col 14}{res}{space 2} .0015728{col 26}{space 2}  .003828{col 37}{space 1}    0.41{col 46}{space 3}0.681{col 54}{space 4}-.0059377{col 67}{space 3} .0090833
+{txt}{space 8}male {c |}{col 14}{res}{space 2}-.0913252{col 26}{space 2} .0358831{col 37}{space 1}   -2.55{col 46}{space 3}0.011{col 54}{space 4}-.1617269{col 67}{space 3}-.0209234
+{txt}{space 7}white {c |}{col 14}{res}{space 2} .3570746{col 26}{space 2} .0499883{col 37}{space 1}    7.14{col 46}{space 3}0.000{col 54}{space 4} .2589988{col 67}{space 3} .4551504
+{txt}{space 6}lbwght {c |}{col 14}{res}{space 2}-.0369349{col 26}{space 2} .4090322{col 37}{space 1}   -0.09{col 46}{space 3}0.928{col 54}{space 4}-.8394457{col 67}{space 3} .7655759
+{txt}{space 8}cigs {c |}{col 14}{res}{space 2}-.0065643{col 26}{space 2} .0034742{col 37}{space 1}   -1.89{col 46}{space 3}0.059{col 54}{space 4}-.0133807{col 67}{space 3} .0002521
+{txt}{space 6}cigtax {c |}{col 14}{res}{space 2}  -.02933{col 26}{space 2} .0048054{col 37}{space 1}   -6.10{col 46}{space 3}0.000{col 54}{space 4}-.0387581{col 67}{space 3} -.019902
+{txt}{space 4}cigprice {c |}{col 14}{res}{space 2} .0236098{col 26}{space 2} .0036387{col 37}{space 1}    6.49{col 46}{space 3}0.000{col 54}{space 4} .0164708{col 67}{space 3} .0307487
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.156671{col 26}{space 2} 1.562546{col 37}{space 1}   -0.74{col 46}{space 3}0.459{col 54}{space 4}-4.222348{col 67}{space 3} 1.909005
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict lfaminc_res
+{txt}(option {bf:xb} assumed; fitted values)
+(197 missing values generated)
+
+{com}. reg smokes lfaminc white motheduc lfaminc_res
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,191
+{txt}{hline 13}{c +}{hline 34}   F(4, 1186)      = {res}    31.15
+{txt}       Model {c |} {res} 13.2365277         4  3.30913194   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 125.999408     1,186  .106238962   {txt}R-squared       ={res}    0.0951
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0920
+{txt}       Total {c |} {res} 139.235936     1,190  .117004988   {txt}Root MSE        =   {res} .32594
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      smokes{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0116066{col 26}{space 2} .0154211{col 37}{space 1}   -0.75{col 46}{space 3}0.452{col 54}{space 4}-.0418622{col 67}{space 3}  .018649
+{txt}{space 7}white {c |}{col 14}{res}{space 2} .1724221{col 26}{space 2} .0324368{col 37}{space 1}    5.32{col 46}{space 3}0.000{col 54}{space 4} .1087821{col 67}{space 3}  .236062
+{txt}{space 4}motheduc {c |}{col 14}{res}{space 2} .0089815{col 26}{space 2} .0070856{col 37}{space 1}    1.27{col 46}{space 3}0.205{col 54}{space 4}-.0049202{col 67}{space 3} .0228833
+{txt}{space 1}lfaminc_res {c |}{col 14}{res}{space 2}-.3540391{col 26}{space 2} .0533632{col 37}{space 1}   -6.63{col 46}{space 3}0.000{col 54}{space 4}-.4587359{col 67}{space 3}-.2493423
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.069935{col 26}{space 2} .0921356{col 37}{space 1}   11.61{col 46}{space 3}0.000{col 54}{space 4} .8891676{col 67}{space 3} 1.250702
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. test lfaminc_res
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}lfaminc_res = 0{p_end}
+
+{txt}       F(  1,  1186) ={res}   44.02
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. * == (6) == Probit *
+. probit smokes motheduc i.white lfaminc
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-593.10529}  
+Iteration 1:{space 3}log likelihood = {res:-547.59879}  
+Iteration 2:{space 3}log likelihood = {res:-546.77099}  
+Iteration 3:{space 3}log likelihood = {res:-546.76991}  
+Iteration 4:{space 3}log likelihood = {res:-546.76991}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:1,387}
+{txt}{col 57}{lalign 13:LR chi2({res:3})}{col 70} = {res}{ralign 6:92.67}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-546.76991}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0781}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      smokes{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.1450599{col 26}{space 2} .0207899{col 37}{space 1}   -6.98{col 46}{space 3}0.000{col 54}{space 4}-.1858074{col 67}{space 3}-.1043124
+{txt}{space 5}1.white {c |}{col 14}{res}{space 2} .1896765{col 26}{space 2} .1098805{col 37}{space 1}    1.73{col 46}{space 3}0.084{col 54}{space 4}-.0256853{col 67}{space 3} .4050383
+{txt}{space 5}lfaminc {c |}{col 14}{res}{space 2}-.1669109{col 26}{space 2} .0498894{col 37}{space 1}   -3.35{col 46}{space 3}0.001{col 54}{space 4}-.2646923{col 67}{space 3}-.0691296
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.126276{col 26}{space 2} .2504611{col 37}{space 1}    4.50{col 46}{space 3}0.000{col 54}{space 4} .6353817{col 67}{space 3} 1.617171
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. * ===== AME & MEM ===== *
+. * AME, motheduc:
+. margins, dydx(motheduc)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:motheduc}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}-.0314146{col 26}{space 2} .0043697{col 37}{space 1}   -7.19{col 46}{space 3}0.000{col 54}{space 4} -.039979{col 67}{space 3}-.0228502
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * MEM, motheduc:
+. margins, dydx(motheduc) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:motheduc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}motheduc {c |}{col 14}{res}{space 2}  -.03111{col 26}{space 2} .0042967{col 37}{space 1}   -7.24{col 46}{space 3}0.000{col 54}{space 4}-.0395313{col 67}{space 3}-.0226887
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * AME, white:
+. margins, dydx(white)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:1.white}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}1.white {c |}{col 14}{res}{space 2} .0390237{col 26}{space 2} .0214047{col 37}{space 1}    1.82{col 46}{space 3}0.068{col 54}{space 4}-.0029287{col 67}{space 3} .0809762
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. * MEM, white:
+. margins, dydx(white) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:1.white}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}1.white {c |}{col 14}{res}{space 2} .0382706{col 26}{space 2}  .020813{col 37}{space 1}    1.84{col 46}{space 3}0.066{col 54}{space 4}-.0025221{col 67}{space 3} .0790634
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: dy/dx for factor levels is the discrete change from the base level.{txt}{p_end}
+{res}{txt}
+{com}. * AME, lfaminc:
+. margins, dydx(lfaminc)
+{res}
+{txt}{col 1}Average marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0361467{col 26}{space 2}  .010733{col 37}{space 1}   -3.37{col 46}{space 3}0.001{col 54}{space 4} -.057183{col 67}{space 3}-.0151105
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. * MEM, lfaminc:
+. margins, dydx(lfaminc) atmeans
+{res}
+{txt}{col 1}Conditional marginal effects{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:1,387}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(smokes), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:lfaminc}{p_end}
+{p2colreset}{...}
+{lalign 4:At: }{space 0}{lalign 8:motheduc} = {res:{ralign 8:12.93583}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:0.white} = {res:{ralign 8:.2155732}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:1.white} = {res:{ralign 8:.7844268}} {txt:(mean)}
+{lalign 4:}{space 0}{lalign 8:lfaminc} = {res:{ralign 8:3.072033}} {txt:(mean)}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}lfaminc {c |}{col 14}{res}{space 2}-.0357962{col 26}{space 2}  .010691{col 37}{space 1}   -3.35{col 46}{space 3}0.001{col 54}{space 4}-.0567501{col 67}{space 3}-.0148423
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kongqingluo/Desktop/EEE/Empirical Exercise/Exercise_1.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}17 Dec 2021, 20:36:22
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
